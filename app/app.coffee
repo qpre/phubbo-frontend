@@ -1,0 +1,1 @@
+Phubbo = Ember.Application.create()
