@@ -1,0 +1,1 @@
+Phubo.SessionLoginRoute = Ember.Route.extend({})
