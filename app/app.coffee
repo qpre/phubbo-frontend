@@ -1,1 +1,1 @@
-Phubbo = Ember.Application.create()
+Phubo = Ember.Application.create()
