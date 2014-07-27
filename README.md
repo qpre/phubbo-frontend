@@ -3,10 +3,10 @@ phubbo-frontend
 
 Set up your dev environement:
 
-`
+```shell
 gem install sass
 npm install
-`
+```
 
 build:
 
