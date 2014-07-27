@@ -1,4 +1,4 @@
-phubbo-frontend
+phubo-frontend
 ===============
 
 Set up your dev environement:
