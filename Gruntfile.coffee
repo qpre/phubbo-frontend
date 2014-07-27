@@ -31,14 +31,14 @@ module.exports = (grunt) ->
         folders: GROUPS
         release: "#{DISTPATH}/#{BIN}.min.js"
         
-    handlebars:
-      all:
+        
+    emberTemplates:
+      compile:
         options:
-          namespace: "#{BIN}.Templates"
-          processName: (filePath) ->
-              filePath.replace(/^Phubo\/assets\/templates\//, "").replace /\.hbs$/, ""
+          amd: true
+          templateBasePath: /^assets\/assets\/templates\//
         files:
-          '#{DISTPATH}/assets/templates/#{BIN}.templates.js': ["app/assets/templates/**/*.hbs"]
+          "dist/assets/templates/phubo.templates.js": "assets/templates/**/*.hbs"
           
     sass:
       dist:
@@ -110,6 +110,10 @@ module.exports = (grunt) ->
       html:
         files: ["app/**/*.html"]
         tasks: ["copy:app"]
+        
+      emberTemplates:
+        files: 'assets/templates/**/*.hbs',
+        tasks: ['emberTemplates']
 
       livereload:
         options:
@@ -156,7 +160,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-connect"
   grunt.loadNpmTasks 'grunt-shell'
   grunt.loadNpmTasks "grunt-coffee-toaster"
-  grunt.loadNpmTasks 'grunt-contrib-handlebars'
+  grunt.loadNpmTasks('grunt-ember-templates');
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-cssmin'
   
@@ -165,7 +169,7 @@ module.exports = (grunt) ->
     "clean"
     "shell:createBuild"
     "shell:createDist"
-    "handlebars"
+    "emberTemplates"
     "style"
     "toaster"
     "copy"
