@@ -81,9 +81,7 @@ module.exports = (grunt) ->
     clean:
       app:
         src: ["build", "dist"]
-        
 
-    
     # this, is orgasmically neat
     watch:
       bower:
