@@ -38,7 +38,7 @@ module.exports = (grunt) ->
           processName: (filePath) ->
               filePath.replace(/^Phubo\/assets\/templates\//, "").replace /\.hbs$/, ""
         files:
-          '#{DISTPATH}/#{BIN}.templates.js': ["app/assets/templates/**/*.hbs"]
+          '#{DISTPATH}/assets/templates/#{BIN}.templates.js': ["app/assets/templates/**/*.hbs"]
           
     sass:
       dist:
@@ -57,7 +57,7 @@ module.exports = (grunt) ->
         options:
           banner: '/* Phubo */'
         files:
-          "dist/phubo.min.css": ["build/assets/style/**/*.css"]
+          "dist/assets/style/phubo.min.css": ["build/assets/style/**/*.css"]
       
     copy:
       app:
@@ -67,6 +67,13 @@ module.exports = (grunt) ->
             flatten: true
             src: ["assets/img/*"]
             dest: "#{DISTPATH}/assets/img/"
+            filter: "isFile"
+          }
+          {
+            expand: true
+            flatten: true
+            src: ["app/**/*.html"]
+            dest: "#{DISTPATH}"
             filter: "isFile"
           }
           {
