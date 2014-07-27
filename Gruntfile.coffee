@@ -87,7 +87,7 @@ module.exports = (grunt) ->
 
     clean:
       app:
-        src: ["build", "dist"]
+        src: ["build", "dist", ".sass-cache", "**/\#*\#"]
 
     # this, is orgasmically neat
     watch:
