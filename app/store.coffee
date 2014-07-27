@@ -1,7 +1,2 @@
-Phubo.Store = DS.Store.extend({
-
-})
-
-Phubo.ApplicationAdapter = DS.RESTAdapter.extend({
-  host: 'https://phubo.heokuapps.com'
-})
+Phubo.ApplicationAdapter = DS.RESTAdapter.reopen
+  host: 'http://phubo.herokuapp.com'
