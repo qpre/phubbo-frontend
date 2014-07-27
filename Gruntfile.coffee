@@ -35,8 +35,7 @@ module.exports = (grunt) ->
     emberTemplates:
       compile:
         options:
-          amd: true
-          templateBasePath: /^assets\/assets\/templates\//
+          templateNameFromFile: (filePath) -> filePath.replace(/^assets\/templates\//, "").replace /\.hbs$/, ""
         files:
           "dist/assets/templates/phubo.templates.js": "assets/templates/**/*.hbs"
           
