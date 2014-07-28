@@ -1,3 +1,32 @@
+@import "../../vendor/foundation/scss/normalize.scss";
+@import "../../vendor/foundation/scss/foundation.scss";
+
 html, body {
-      min-height: 100%;
+	min-width:100%;
+	min-height: 100%;
+}
+
+.form-wrapper{
+	@include grid-row();
+	h1{
+		margin-left: $form-spacing;
+	}
+}
+
+.label-wrapper{
+	@include grid-column(12);
+	label{
+		@include form-label();
+	}
+}
+.input-wrapper{
+	@include grid-column(12);
+	input{
+		@include form-element();
+	}
+}
+.form-button{
+	@include button($full-width:true);
+	margin-top: $form-spacing;
+	margin-left: $form-spacing;
 }
