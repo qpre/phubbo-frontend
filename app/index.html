@@ -4,23 +4,66 @@
   <meta charset="utf-8">
   <title>Phubo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="assets/style/phubo.min.css">
 </head>
-<body>  
+
+<body class='loaded'>
+  <nav class="header fadein transparent">
+    <div class="background"></div>
+    <div class="wrapper">
+      <div class="inner">
+        <a class="logo" href="">Phubo</a>
+        <div class="right">
+          <a class="signup submit" data-ga-action="Sign Up" data-ga-category="Homepage Navigation Header" href="/signup">Sign up</a>
+          <a class="login" data-ga-action="Log in" data-ga-category="Homepage Navigation Header" href="/login">Log in</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="masthead">
+    <div class="text_wrap">
+      <h1>Store, Explore, Share</h1>
+      <h2>Make the best out of your photos</h2>
+      <a class="button large on-image" data-ga-action="Click Get Started" data-ga-category="Homepage Masthead" href="/signup">Get started</a>
+    </div>
+    <div class="credits">
+      <span><a href="https://500px.com/photo/71025777/bromo-starry-night-by-silentino-natti">Bromo Starry Night</a> by <a href="https://500px.com/S-Natti">Silentino Natti</a></span><span class="license"><a href="//prime.500px.com/photos/71025777?utm_source=500px&amp;utm_medium=referral&amp;utm_content=hero%20image&amp;utm_campaign=home%20page" target="_blank">License this photo</a></span><div class="fade_bottom"></div>
+    </div>
+    <a class="scroll_arrow" href="#more">
+      <img src="//assetcdn.500px.org/assets/home/arrrow_down2@2x-c1ef6b59115c590e1977cc28eac1d35c.png" style="opacity: 1;">
+    </a>
+  </section>
+
+  <section class="split-container">
+    <div class="split">
+      <div class="photographer user">
+        <div class="icon"></div>
+        <h3>Pour toi public</h3>
+        <p>Le beauf est un personnage fascinant</p>
+        <a class="button" data-ga-action="Click Photographer" data-ga-category="Homepage User Split" href="/signup?r=/upload">Sign Up</a>
+      </div>
+      <div class="publisher user">
+        <div class="icon"></div>
+        <h3>Enter the matrix</h3>
+        <p>Viens, à la maison, ya les oiseaux, qui chantent...</p>
+        <a class="button" data-ga-action="Click Publisher" data-ga-category="Homepage User Split" href="https://prime.500px.com?utm_source=500px&amp;utm_medium=referral&amp;utm_content=prime_promo%202&amp;utm_campaign=home%20page">Log In</a>
+      </div>
+    </div>
+  </section>
+
   <script src="vendor/jquery.js"></script>
   <script src="vendor/handlebars.js"></script>
   <script src="vendor/ember.js"></script>
   <script src="vendor/ember-data.js"></script>
   <script src="assets/templates/phubo.templates.js"></script>
   <script src="phubo.js"></script>
-  
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
   <!-- Latest compiled and minified JavaScript -->
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-</body>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </html>
