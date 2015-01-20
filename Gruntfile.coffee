@@ -64,7 +64,7 @@ module.exports = (grunt) ->
           {
             expand: true
             flatten: true
-            src: ["assets/img/*"]
+            src: ["assets/img/**/*"]
             dest: "#{DISTPATH}/assets/img/"
             filter: "isFile"
           }
