@@ -1,4 +1,4 @@
-Phubo.SessionLoginController = Ember.ObjectController.extend({
+Phubo.SessionController = Ember.ObjectController.extend({
   currentUser:          null
   username:             null
   password:             null
