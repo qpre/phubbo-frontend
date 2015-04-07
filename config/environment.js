@@ -43,6 +43,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.SERVER_URL = 'phubo.herokuapp.com';
     ENV.baseURL = '//phubo.s3-eu-west-1.amazonaws.com/';
+    ENV.locationType = 'none';
   }
 
   return ENV;
