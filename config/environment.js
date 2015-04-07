@@ -19,7 +19,7 @@ module.exports = function(environment) {
     }
   };
 
-  if (environment === 'development') {
+  if (environment === 'development') {``
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -41,8 +41,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.SERVER_URL = 'phubo.herokuapp.com'
-    ENV.baseURL = '//s3-eu-west-1.amazonaws.com/phubo/';
+    ENV.SERVER_URL = 'phubo.herokuapp.com';
+    ENV.baseURL = '//phubo.s3-eu-west-1.amazonaws.com/';
   }
 
   return ENV;
