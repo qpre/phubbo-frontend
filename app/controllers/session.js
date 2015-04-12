@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import config from '../config/environment';
 
 export default Ember.Controller.extend({
   currentUser: null,
@@ -22,7 +23,7 @@ export default Ember.Controller.extend({
 
   actions: {
     login: function() {
-      return Ember.$.post('http://localhost:9393/session/login', {
+      return Ember.$.post(config.SERVER_URL + '/session/login', {
         username: this.get('username'),
         password: this.get('password')
       }).then(((function(_this) {
@@ -31,13 +32,13 @@ export default Ember.Controller.extend({
 
           _this.set('loginInProgress', false);
           _this.set('isLoggedIn', true);
-          _this.set('currentUser', data['user_id'])
+          _this.set('currentUser', data['user_id']);
 
-          _this.resolveTransition()
+          _this.resolveTransition();
         };
       })(this)), ((function(_this) {
         return function(response) {
-          if (response.status === 401) {};
+          if (response.status === 401) {}
           _this.set('loginInProgress', false);
           _this.set('loginFailed', true);
           return _this.transitionToRoute('session.login');
