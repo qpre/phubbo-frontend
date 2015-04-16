@@ -10,8 +10,8 @@ export default Ember.Controller.extend({
   token: localStorage.token,
 
   isLoggedIn: function () {
-    this.get('token') !== undefined
-  },
+    return this.get('token') !== undefined;
+  }.property('isLoggedIn'),
 
   tokenChanged: function() {
     localStorage.token = this.get('token');
@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
       this.set('previousTransition', null);
       previousTransition.retry();
     } else {
-      this.transitionToRoute('dashboard');
+      this.transitionToRoute('dashboard.index');
     }
   },
 
@@ -39,7 +39,6 @@ export default Ember.Controller.extend({
           var previousTransition;
 
           _this.set('loginInProgress', false);
-          _this.set('isLoggedIn', true);
           _this.set('currentUser', data['user_id']);
           _this.set('token', data['token']);
 
