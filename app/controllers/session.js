@@ -7,7 +7,15 @@ export default Ember.Controller.extend({
   password: null,
   loginFailed: false,
   loginInProgress: false,
-  isLoggedIn: false,
+  token: localStorage.token,
+
+  isLoggedIn: function () {
+    this.get('token') !== undefined
+  },
+
+  tokenChanged: function() {
+    localStorage.token = this.get('token');
+  }.observes('token'),
 
   resolveTransition: function () {
     var previousTransition;
@@ -33,6 +41,7 @@ export default Ember.Controller.extend({
           _this.set('loginInProgress', false);
           _this.set('isLoggedIn', true);
           _this.set('currentUser', data['user_id']);
+          _this.set('token', data['token']);
 
           _this.resolveTransition();
         };
