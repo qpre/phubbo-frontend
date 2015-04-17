@@ -2,9 +2,10 @@ import Ember from 'ember';
 import config from '../config/environment';
 
 export default Ember.Controller.extend({
-  currentUser: null,
-  username: null,
+  storedUsername: localStorage.username,
+  userId: localStorage.userId,
   password: null,
+  username: null,
   loginFailed: false,
   loginInProgress: false,
   token: localStorage.token,
@@ -16,6 +17,20 @@ export default Ember.Controller.extend({
   tokenChanged: function() {
     localStorage.token = this.get('token');
   }.observes('token'),
+
+  usernameChanged: function() {
+    localStorage.username = this.get('storedUsername');
+  }.observes('storedUsername'),
+
+  userIdChanged: function() {
+    localStorage.userId = this.get('userId');
+  }.observes('userId'),
+
+  reset: function () {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userId');
+  },
 
   resolveTransition: function () {
     var previousTransition;
@@ -30,6 +45,11 @@ export default Ember.Controller.extend({
   },
 
   actions: {
+    logout: function () {
+      this.reset();
+      return this.transitionToRoute('index');
+    },
+
     login: function() {
       return Ember.$.post(config.SERVER_URL + '/session/login', {
         username: this.get('username'),
@@ -39,8 +59,9 @@ export default Ember.Controller.extend({
           var previousTransition;
 
           _this.set('loginInProgress', false);
-          _this.set('currentUser', data['user_id']);
           _this.set('token', data['token']);
+          _this.set('userId', data['userId']);
+          _this.set('storedUsername', data['username']);
 
           _this.resolveTransition();
         };

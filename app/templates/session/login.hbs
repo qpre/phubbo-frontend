@@ -10,7 +10,7 @@
 </section>
 
 <div class='jumbotron'>
-  {{#if isLoggedIn }}
+  {{#if session.isLoggedIn }}
     <div class='row'>
       <h3>You're already logged in !</h3>
       {{#link-to 'dashboard.index'}}Dashboard{{/link-to}}

@@ -4,8 +4,13 @@
     <div class="inner">
       <a class="logo" href="">Phubo</a>
       <div class="right">
-        {{#link-to 'session.login' classNames='signup submit'}}Sign Up{{/link-to}}
-        {{#link-to 'session.login' classNames='signup submit'}}Log in{{/link-to}}
+        {{#if controllers.session.isLoggedIn}}
+          {{#link-to 'session.logout' classNames='signup submit'}}Log Out{{/link-to}}
+          {{#link-to 'dashboard.index' classNames='signup submit'}}{{controllers.session.username}}{{/link-to}}
+        {{else}}
+          {{#link-to 'session.login' classNames='signup submit'}}Sign Up{{/link-to}}
+          {{#link-to 'session.login' classNames='signup submit'}}Log in{{/link-to}}
+        {{/if}}
       </div>
     </div>
   </div>
