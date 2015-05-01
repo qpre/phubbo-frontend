@@ -55,9 +55,7 @@ export default Ember.Controller.extend({
         username: this.get('username'),
         password: this.get('password')
       }).then(((function(_this) {
-        return function(data, textStatus, xhr) {
-          var previousTransition;
-
+        return function(data) {
           _this.set('loginInProgress', false);
           _this.set('token', data['token']);
           _this.set('userId', data['userId']);
