@@ -2,37 +2,37 @@ import Ember from 'ember';
 import config from '../config/environment';
 
 export default Ember.Controller.extend({
-  storedUsername: localStorage.username,
-  userId: localStorage.userId,
-  password: null,
-  username: null,
-  loginFailed: false,
-  loginInProgress: false,
-  token: localStorage.token,
+  storedUsername:   localStorage.username,
+  userId:           localStorage.userId,
+  password:         null,
+  username:         null,
+  loginFailed:      false,
+  loginInProgress:  false,
+  token:            localStorage.token,
 
-  isLoggedIn: function () {
+  isLoggedIn:         function () {
     return this.get('token') !== undefined;
   }.property('isLoggedIn'),
 
-  tokenChanged: function() {
+  tokenChanged:       function() {
     localStorage.token = this.get('token');
   }.observes('token'),
 
-  usernameChanged: function() {
+  usernameChanged:    function() {
     localStorage.username = this.get('storedUsername');
   }.observes('storedUsername'),
 
-  userIdChanged: function() {
+  userIdChanged:      function() {
     localStorage.userId = this.get('userId');
   }.observes('userId'),
 
-  reset: function () {
+  reset:              function () {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
   },
 
-  resolveTransition: function () {
+  resolveTransition:  function () {
     var previousTransition;
     previousTransition = this.get('previousTransition');
 
@@ -45,12 +45,12 @@ export default Ember.Controller.extend({
   },
 
   actions: {
-    logout: function () {
+    logout:   function () {
       this.reset();
       return this.transitionToRoute('index');
     },
 
-    login: function() {
+    login:    function() {
       return Ember.$.post(config.SERVER_URL + '/session/login', {
         username: this.get('username'),
         password: this.get('password')
