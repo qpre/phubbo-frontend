@@ -15,6 +15,8 @@ Router.map(function() {
   this.resource('dashboard', function () {
     this.route('index');
   });
+
+  this.route('tos');
 });
 
 export default Router;
