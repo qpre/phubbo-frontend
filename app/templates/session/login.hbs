@@ -10,7 +10,7 @@
 </section>
 
 <div class='jumbotron'>
-  {{#if session.isLoggedIn }}
+  {{#if isLoggedIn }}
     <div class='row'>
       <h3>You're already logged in !</h3>
       {{#link-to 'dashboard.index'}}Dashboard{{/link-to}}
@@ -20,12 +20,12 @@
 
       <div  class="form-group">
         <label for='username'>Username :</label>
-        {{input value=username id='username'}}
+        {{input value=username}}
       </div>
 
       <div  class="form-group">
         <label for='password'>Password :</label>
-        {{input type='password' value=password id='password'}}
+        {{input type='password' value=password}}
       </div>
 
       <button class="btn btn-primary btn-block" type="submit">Sign In</button>

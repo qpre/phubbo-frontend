@@ -2,19 +2,18 @@ import Ember from 'ember';
 import config from '../config/environment';
 
 export default Ember.Controller.extend({
-  storedUsername:   localStorage.username,
-  userId:           localStorage.userId,
-  password:         null,
-  username:         null,
-  loginFailed:      false,
-  loginInProgress:  false,
-  token:            localStorage.token,
+  username:     null,
+  userId:       null,
+  token:        null,
+  isLoggedIn:   false,
 
   isLoggedIn:         function () {
-    return this.get('token') !== undefined;
-  }.property('isLoggedIn'),
+    debugger;
+    return (this.get('token') !== undefined) && (this.get('token') !== null);
+  }.property('token'),
 
   tokenChanged:       function() {
+    debugger;
     localStorage.token = this.get('token');
   }.observes('token'),
 
@@ -27,6 +26,10 @@ export default Ember.Controller.extend({
   }.observes('userId'),
 
   reset:              function () {
+    this.set('token', null);
+    this.set('username', null);
+    this.set('userId', null);
+    
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
@@ -40,6 +43,7 @@ export default Ember.Controller.extend({
       this.set('previousTransition', null);
       previousTransition.retry();
     } else {
+      debugger
       this.transitionToRoute('dashboard.index');
     }
   },
@@ -56,18 +60,15 @@ export default Ember.Controller.extend({
         password: this.get('password')
       }).then(((function(_this) {
         return function(data) {
-          _this.set('loginInProgress', false);
-          _this.set('token', data['token']);
-          _this.set('userId', data['userId']);
-          _this.set('storedUsername', data['username']);
+          _this.set('token',            data['userId']);
+          _this.set('userId',           data['token']);
+          _this.set('storedUsername',   data['username']);
 
           _this.resolveTransition();
         };
       })(this)), ((function(_this) {
         return function(response) {
           if (response.status === 401) {}
-          _this.set('loginInProgress', false);
-          _this.set('loginFailed', true);
           return _this.transitionToRoute('session.login');
         };
       })(this)));

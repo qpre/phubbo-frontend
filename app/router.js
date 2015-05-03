@@ -6,7 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.resource('Users', function() {});
+  this.route('users', function() {
+    this.route('me');
+  });
 
   this.resource('session', function() {
     this.route('login');
