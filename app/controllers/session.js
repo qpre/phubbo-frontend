@@ -2,23 +2,20 @@ import Ember from 'ember';
 import config from '../config/environment';
 
 export default Ember.Controller.extend({
-  username:     null,
-  userId:       null,
-  token:        null,
-  isLoggedIn:   false,
+  username:     localStorage.username,
+  userId:       localStorage.userId,
+  token:        localStorage.token,
 
   isLoggedIn:         function () {
-    debugger;
     return (this.get('token') !== undefined) && (this.get('token') !== null);
   }.property('token'),
 
   tokenChanged:       function() {
-    debugger;
     localStorage.token = this.get('token');
   }.observes('token'),
 
   usernameChanged:    function() {
-    localStorage.username = this.get('storedUsername');
+    localStorage.username = this.get('username');
   }.observes('storedUsername'),
 
   userIdChanged:      function() {
@@ -26,10 +23,10 @@ export default Ember.Controller.extend({
   }.observes('userId'),
 
   reset:              function () {
-    this.set('token', null);
-    this.set('username', null);
-    this.set('userId', null);
-    
+    this.set('token'    , null);
+    this.set('username' , null);
+    this.set('userId'   , null);
+
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
@@ -43,8 +40,7 @@ export default Ember.Controller.extend({
       this.set('previousTransition', null);
       previousTransition.retry();
     } else {
-      debugger
-      this.transitionToRoute('dashboard.index');
+        this.transitionToRoute('dashboard.index');
     }
   },
 

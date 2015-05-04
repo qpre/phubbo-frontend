@@ -6,7 +6,7 @@
       <div class="right">
         {{#if controllers.session.isLoggedIn}}
           {{#link-to 'session.logout' classNames='signup submit'}}Log Out{{/link-to}}
-          {{#link-to 'users.me' classNames='signup submit'}}{{controllers.session.storedUsername}}{{/link-to}}
+          {{#link-to 'users.me' classNames='signup submit'}}{{controllers.session.username}}{{/link-to}}
         {{else}}
           {{#link-to 'session.login' classNames='signup submit'}}Sign Up{{/link-to}}
           {{#link-to 'session.login' classNames='signup submit'}}Log in{{/link-to}}
