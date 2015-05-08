@@ -1,3 +1,5 @@
+[![Build Status](http://54.191.235.197:8080/buildStatus/icon?job=phubo-front)](http://54.191.235.197:8080/job/phubo-front/)
+
 # Phubo
 
 This README outlines the details of collaborating on this Ember application.
