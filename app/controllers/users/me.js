@@ -7,9 +7,9 @@ export default Ember.Controller.extend({
   userId:   Ember.computed.alias("controllers.session.userId"),
 
   actions: {
-    addFacebookAuth: function (user_id) {
+    addFacebookAuth: function () {
       var self = this;
-      FB.login(function(response) {
+      window.FB.login(function(response) {
         if (response.authResponse) {
           Ember.$.get(config.SERVER_URL + '/auth/facebook/callback',{
             signed_request: response.authResponse.signedRequest,
@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
             console.log(json);
           });
         }
-      })
+      });
     }
   }
 });
