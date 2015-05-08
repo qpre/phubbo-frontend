@@ -15,12 +15,13 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' use.typekit.net connect.facebook.net maps.googleapis.com maps.gstatic.com ",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' use.typekit.net connect.facebook.net maps.googleapis.com maps.gstatic.com localhost:9393 *.facebook.com",
       'font-src': "'self' data: use.typekit.net",
-      'connect-src': "'self' localhost:9393",
+      'connect-src': "'self' localhost:9393 *.facebook.com",
       'img-src': "'self' www.facebook.com p.typekit.net assetcdn.500px.org",
       'style-src': "'self' 'unsafe-inline' use.typekit.net",
-      'frame-src': "s-static.ak.facebook.com static.ak.facebook.com www.facebook.com"
+      'frame-src': "s-static.ak.facebook.com static.ak.facebook.com www.facebook.com",
+      'report-uri': "'self' localhost:9393 *.facebook.com"
     },
 
     APP: {
@@ -33,7 +34,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_RESOLVER = true;
     ENV.APP.LOG_ACTIVE_GENERATION = true;
     ENV.APP.LOG_TRANSITIONS = true;
-    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.SERVER_URL = 'http://localhost:9393'
   }

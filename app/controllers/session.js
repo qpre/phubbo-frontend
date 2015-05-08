@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
 
   usernameChanged:    function() {
     localStorage.username = this.get('username');
-  }.observes('storedUsername'),
+  }.observes('username'),
 
   userIdChanged:      function() {
     localStorage.userId = this.get('userId');
@@ -46,6 +46,9 @@ export default Ember.Controller.extend({
 
   actions: {
     logout:   function () {
+      Ember.$.post(config.SERVER_URL + '/session/logout', {
+        token: this.get('token')
+      });
       this.reset();
       return this.transitionToRoute('index');
     },
@@ -56,9 +59,9 @@ export default Ember.Controller.extend({
         password: this.get('password')
       }).then(((function(_this) {
         return function(data) {
-          _this.set('token',            data['userId']);
-          _this.set('userId',           data['token']);
-          _this.set('storedUsername',   data['username']);
+          _this.set('token',            data['token']);
+          _this.set('userId',           data['userId']);
+          _this.set('username',         data['username']);
 
           _this.resolveTransition();
         };

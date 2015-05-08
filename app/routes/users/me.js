@@ -1,7 +1,9 @@
 import AuthenticatedRoute from '../authenticated-route';
+import config from '../../config/environment';
 
 export default AuthenticatedRoute.extend({
   model: function () {
-    this.store.find('user', this.controllerFor('session').get('userId'));
+    // return Ember.$.getJSON(config.SERVER_URL + '/users/' + this.controllerFor('session').get('userId'));
+    return this.store.find('user', this.controllerFor('session').get('userId'));
   }
 });

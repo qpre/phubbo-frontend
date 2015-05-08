@@ -12,4 +12,8 @@
 
 <h2>{{username}}</h2>
 
-{{auth-url 'facebook' userId}}
+{{#each auth in authorizations}}
+<p>coucou</p>
+{{/each}}
+
+<button {{action 'addFacebookAuth' userId}}>Add Facebook</button>

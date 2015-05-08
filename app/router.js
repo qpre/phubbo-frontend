@@ -19,6 +19,7 @@ Router.map(function() {
   });
 
   this.route('tos');
+  this.route('authorizations');
 });
 
 export default Router;
