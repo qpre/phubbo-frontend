@@ -1,6 +1,6 @@
 export function initialize(/* container, application */) {
   window.fbAsyncInit = function() {
-    FB.init({
+    window.FB.init({
       appId  : '293516484105634',
       status : true, // check login status
       cookie : true, // enable cookies to allow the server to access the session

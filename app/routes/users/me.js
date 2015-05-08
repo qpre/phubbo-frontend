@@ -1,5 +1,4 @@
 import AuthenticatedRoute from '../authenticated-route';
-import config from '../../config/environment';
 
 export default AuthenticatedRoute.extend({
   model: function () {
