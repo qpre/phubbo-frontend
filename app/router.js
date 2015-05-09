@@ -8,7 +8,9 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('users', function() {
     this.route('me');
+    this.route('user', { path: '/:id' });
   });
+
 
   this.resource('session', function() {
     this.route('login');
@@ -19,7 +21,9 @@ Router.map(function() {
   });
 
   this.route('tos');
-  this.route('authorizations');
+  this.route('authorizations', function () {
+    this.route('authorization', {path: '/:authorization_id'});
+  });
 });
 
 export default Router;

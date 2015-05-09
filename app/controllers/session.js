@@ -61,7 +61,7 @@ export default Ember.Controller.extend({
         return function(data) {
           _this.set('token',            data['token']);
           _this.set('userId',           data['userId']);
-          _this.set('username',         data['username']);
+          _this.set('username',         data['name']);
 
           _this.resolveTransition();
         };
