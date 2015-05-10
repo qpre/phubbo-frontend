@@ -1,7 +1,7 @@
 dependencies:
   pre:
     - npm install -g bower
-    - npm install -g embercli
+    - npm install -g ember-cli
   override:
     - npm i
     - bower i
