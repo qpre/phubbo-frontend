@@ -18,3 +18,4 @@ deployment:
           s3_location:
             bucket: phubo
             key_pattern: appname-1234-{BRANCH}-{SHORT_COMMIT}
+        deployment_group: phubo-frontend
