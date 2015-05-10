@@ -7,9 +7,8 @@ dependencies:
     - bower i
 
 deployment:
-  staging:
-    aws:
+  production:
     branch: master
     commands:
       - ember build
-      - /bin/bash deploy.sh
+      - ./deploy.sh
