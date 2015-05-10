@@ -1,19 +1,14 @@
-<section class="masthead">
-  <div class="text_wrap">
-    <h1>Welcome in Phubo</h1>
-    <h2>Make the best out of your photos</h2>
+
+<div class='main'>
+  <div class='container'>
+    <h1></h1>
+
+    <h2>{{model.name}}</h2>
+
+    {{#each model.authorizations}}
+    <p><i class="fa fa-facebook-square"></i></p>
+    {{/each}}
+
+    <button {{action 'addFacebookAuth'}} ><i class="fa fa-facebook-square"></i> Link a Facebook account</button>
   </div>
-  <a class="scroll_arrow" href="#more">
-    <img src="//assetcdn.500px.org/assets/home/arrrow_down2@2x-c1ef6b59115c590e1977cc28eac1d35c.png" style="opacity: 1;">
-  </a>
-</section>
-
-<h1></h1>
-
-<h2>{{model.name}}</h2>
-
-{{#each model.authorizations}}
-<p><i class="fa fa-facebook-square"></i></p>
-{{/each}}
-
-<button {{action 'addFacebookAuth'}} ><i class="fa fa-facebook-square"></i> Link a Facebook account</button>
+</div>

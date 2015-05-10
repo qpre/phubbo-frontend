@@ -13,4 +13,8 @@ var App = Ember.Application.extend({
 
 loadInitializers(App, config.modulePrefix);
 
+Ember.$(document).ready(function () {
+  Ember.$('body').addClass('loaded');
+});
+
 export default App;

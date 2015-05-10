@@ -15,6 +15,7 @@ Router.map(function() {
   this.resource('session', function() {
     this.route('login');
     this.route('logout');
+    this.route('register');
   });
   this.resource('dashboard', function () {
     this.route('index');
