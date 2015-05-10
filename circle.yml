@@ -8,14 +8,8 @@ dependencies:
 
 deployment:
   staging:
+    aws:
     branch: master
-    codedeploy:
-      appname-1234:
-        application_root: /
-        region: eu-west-1
-        revision_location:
-          revision_type: S3
-          s3_location:
-            bucket: phubo
-            key_pattern: appname-1234-{BRANCH}-{SHORT_COMMIT}
-        deployment_group: phubo-frontend
+      commands:
+      - ember build
+      - /bin/bash deploy.sh
