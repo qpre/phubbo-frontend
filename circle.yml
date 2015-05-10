@@ -9,6 +9,7 @@ dependencies:
 
 deployment:
   production:
+    aws:
     branch: master
     commands:
       - ember build
