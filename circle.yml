@@ -8,9 +8,8 @@ dependencies:
     - sudo pip install awscli
 
 deployment:
-  production:
-    aws:
-    branch: master
+  aws:
+  branch: master
     commands:
       - ember build
       - ./deploy.sh
