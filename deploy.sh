@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DEFAULT="jenkins"
+DEFAULT="companyprofile"
 PROFILE=${AWS_PROFILE:-$DEFAULT}
 BUCKET=phubo
 DIR=dist/
