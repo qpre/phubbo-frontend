@@ -65,7 +65,13 @@ export default Ember.Controller.extend({
   actions: {
     register: function () {
       if (this.get('isValid')) {
+        let user = this.store.createRecord('user', {
+          name:     this.get('username'),
+          password: this.get('password'),
+          email:    this.get('email')
+        })
 
+        user.save()
       }
     }
   }
