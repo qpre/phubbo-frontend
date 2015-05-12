@@ -89,7 +89,7 @@ export default Ember.Controller.extend({
           self.transitionTo('index');
         };
 
-        var onFailure = function (reason) {
+        var onFailure = function () {
           controller.pushMessage('Something went wrong, please try again', 'error');
         };
 
