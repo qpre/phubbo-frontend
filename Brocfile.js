@@ -6,7 +6,11 @@ var app = new EmberApp();
 
 app.import('bower_components/bootstrap/dist/js/bootstrap.js');
 app.import('bower_components/bootstrap/dist/css/bootstrap.css');
-app.import('bower_components/fontawesome/css/font-awesome.min.css');
+app.import('bower_components/fontawesome/css/font-awesome.min.css', { destDir: '/assets' });
+
+app.import('bower_components/fontawesome/fonts/fontawesome-webfont.eot', { destDir: '/assets/fonts' });
+app.import('bower_components/fontawesome/fonts/fontawesome-webfont.woff', { destDir: '/assets/fonts' });
+app.import('bower_components/fontawesome/fonts/fontawesome-webfont.woff2', { destDir: '/assets/fonts' });
 
 
 app.import('vendor/GSDK/assets/css/demo.css');

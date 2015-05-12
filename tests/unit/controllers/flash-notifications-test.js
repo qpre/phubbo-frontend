@@ -3,8 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('controller:application', {
-  needs: ['controller:session', 'controller:flashNotifications']
+moduleFor('controller:flash-notifications', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

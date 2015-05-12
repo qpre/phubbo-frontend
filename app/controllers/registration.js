@@ -9,10 +9,20 @@ export default Ember.Controller.extend({
   usernameFieldClass: 'inactive',
   passwordFieldClass: 'inactive',
 
-  isUsernameValid:  false,
-  isPasswordValid:  false,
+  isUsernameValid:  null,
+  isPasswordValid:  null,
 
   errorMessage:     null,
+
+  onMessageChanged: function () {
+    let controller = this.controllerFor('flashNotifications');
+
+    if (this.get('errorMessage')) {
+      controller.pushMessage(this.get('errorMessage'), 'error');
+    } else {
+      controller.now();
+    }
+  }.observes('errorMessage'),
 
   usernameChanged: function () {
     this.set('isUsernameValid', true);
@@ -34,7 +44,7 @@ export default Ember.Controller.extend({
       this.set('errorMessage', null);
     } else {
       this.set('errorMessage', 'Your username is invalid');
-    };
+    }
 
     this.set('usernameFieldClass', klass);
   }.observes('isUsernameValid'),
@@ -47,7 +57,7 @@ export default Ember.Controller.extend({
       this.set('errorMessage', null);
     } else {
       this.set('errorMessage', 'Your password and its confirmation should match');
-    };
+    }
 
     this.set('passwordFieldClass', klass);
   }.observes('isPasswordValid'),
@@ -65,13 +75,25 @@ export default Ember.Controller.extend({
   actions: {
     register: function () {
       if (this.get('isValid')) {
+
         let user = this.store.createRecord('user', {
           name:     this.get('username'),
           password: this.get('password'),
           email:    this.get('email')
-        })
+        });
 
-        user.save()
+        var self = this;
+        var controller = self.controllerFor('flashNotifications');
+        var onSuccess = function () {
+          controller.pushMessage('You registered successfully !', 'success');
+          self.transitionTo('index');
+        };
+
+        var onFailure = function (reason) {
+          controller.pushMessage('Something went wrong, please try again', 'error');
+        };
+
+        user.save().then(onSuccess, onFailure);
       }
     }
   }

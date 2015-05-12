@@ -10,15 +10,6 @@
       </div>
     </div>
 
-    {{#if errorMessage.length}}
-      <div class="alert alert-danger"  style='margin-bottom: 40px;'>
-           <div class="container">
-               <b>Error: </b>{{errorMessage}}
-          </div>
-      </div>
-    {{/if}}
-
-
     <div class='row'>
       <div class='col-sm-offset-1 col-sm-8'>
         <form class="form-horizontal" {{action "register" on='submit'}}>

@@ -176,5 +176,13 @@ body h1, body h2, body h3, body h4 {
 
 .main {
 	margin-top: 60px;
-	padding-top: 20px;
+}
+
+.alert.flash {
+	margin-top: 60px;
+	margin-bottom: 0;
+}
+
+.alert + .main {
+	margin-top: 0;
 }
