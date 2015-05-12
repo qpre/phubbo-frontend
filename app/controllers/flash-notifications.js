@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
   },
 
   pushMessage: function (text, type) {
-    var message;
+    let message;
 
     message = {
       text: text,
