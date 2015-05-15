@@ -9,7 +9,7 @@ moduleFor('adapter:application', 'ApplicationAdapter', {
 });
 
 // Replace this with your real tests.
-test('it exists', function(assert) {
-  var adapter = this.subject();
+test('it exists', function (assert) {
+  let adapter = this.subject();
   assert.ok(adapter);
 });

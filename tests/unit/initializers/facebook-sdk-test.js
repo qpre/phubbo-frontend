@@ -2,11 +2,12 @@ import Ember from 'ember';
 import { initialize } from '../../../initializers/facebook-sdk';
 import { module, test } from 'qunit';
 
-var container, application;
+let container;
+let application;
 
 module('FacebookSdkInitializer', {
-  beforeEach: function() {
-    Ember.run(function() {
+  beforeEach: function () {
+    Ember.run(function () {
       application = Ember.Application.create();
       container = application.__container__;
       application.deferReadiness();
@@ -15,7 +16,7 @@ module('FacebookSdkInitializer', {
 });
 
 // Replace this with your real tests.
-test('it works', function(assert) {
+test('it works', function (assert) {
   initialize(container, application);
 
   // you would normally confirm the results of the initializer here

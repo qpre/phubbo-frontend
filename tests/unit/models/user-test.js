@@ -8,8 +8,8 @@ moduleForModel('user', {
   needs: ['model:authorization']
 });
 
-test('it exists', function(assert) {
-  var model = this.subject();
+test('it exists', function (assert) {
+  let model = this.subject();
   // var store = this.store();
   assert.ok(!!model);
 });

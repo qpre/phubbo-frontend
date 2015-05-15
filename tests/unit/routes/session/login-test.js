@@ -8,7 +8,7 @@ moduleFor('route:session/login', {
   // needs: ['controller:foo']
 });
 
-test('it exists', function(assert) {
-  var route = this.subject();
+test('it exists', function (assert) {
+  let route = this.subject();
   assert.ok(route);
 });

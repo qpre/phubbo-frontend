@@ -7,7 +7,11 @@ export default Ember.Controller.extend({
   userId:   Ember.computed.alias("controllers.session.userId"),
 
   actions: {
-    addFacebookAuth: function () {
+    update() {
+      this.model.save();
+    },
+
+    addFacebookAuth() {
       var self = this;
       window.FB.login(function(response) {
         if (response.authResponse) {

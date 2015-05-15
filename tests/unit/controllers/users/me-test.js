@@ -10,7 +10,7 @@ moduleFor('controller:users/me', {
 });
 
 // Replace this with your real tests.
-test('it exists', function(assert) {
-  var controller = this.subject();
+test('it exists', function (assert) {
+  let controller = this.subject();
   assert.ok(controller);
 });

@@ -6,7 +6,7 @@ export default DS.RESTAdapter.extend({
 
   headers: function() {
     return {
-      "PHUBO_AUTH_TOKEN": this.get("session.token") || localStorage.getItem('token')
+      'PHUBO_AUTH_TOKEN': this.get('session.token') || localStorage.getItem('token')
     };
   }.property()
 });
