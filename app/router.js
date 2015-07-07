@@ -1,18 +1,18 @@
 import Ember from 'ember';
 import config from './config/environment';
 
-var Router = Ember.Router.extend({
+let Router = Ember.Router.extend({
   location: config.locationType
 });
 
-Router.map(function() {
-  this.route('users', function() {
+Router.map(function () {
+  this.route('users', function () {
     this.route('me');
     this.route('user', { path: '/:id' });
   });
 
 
-  this.resource('session', function() {
+  this.resource('session', function () {
     this.route('login');
     this.route('logout');
     this.route('register');

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function flashMessageKlass(type) {
+export function flashMessageKlass (type) {
   let klass;
 
   switch (type) {

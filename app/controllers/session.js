@@ -44,7 +44,7 @@ export default Ember.Controller.extend({
     }
   },
 
-  actions: {    
+  actions: {
     logout:   function () {
       Ember.$.post(config.SERVER_URL + '/session/logout', {
         token: this.get('token')
