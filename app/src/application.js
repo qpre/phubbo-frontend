@@ -1,3 +1,9 @@
-import Router from './modules/router';
+import {initRouter, addRoute, navigate} from './modules/Router/router';
 
-console.log('Hey sexy !');
+initRouter();
+
+addRoute('photos', () => {
+  console.log('now on photos !');
+});
+
+navigate('photos');
