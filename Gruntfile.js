@@ -5,11 +5,15 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
-    babel: {
-      options: {
-        compact: false
-      },
+    browserify: {
       dist: {
+        options: {
+          transform: [
+            ["babelify", {
+              compact: false
+            }]
+          ]
+        },
         files: {
           'dist/phubo.js': 'app/src/application.js'
         }
@@ -81,7 +85,7 @@ module.exports = function(grunt) {
     regarde: {
       es6: {
         files:['app/src/**/*.js'],
-        tasks: ['jscs', 'babel', 'livereload']
+        tasks: ['jscs', 'browserify', 'livereload']
       },
 
       styles: {
@@ -105,7 +109,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build',[
     'jscs',
-    'babel',
+    'browserify',
     'sass',
     'copy'
   ]);
