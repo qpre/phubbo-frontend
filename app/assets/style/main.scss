@@ -1,0 +1,32 @@
+/* maxvoltar.com/archive/-webkit-font-smoothing */
+html { -webkit-font-smoothing: antialiased; }
+
+html { overflow-y: scroll; }
+
+/* hand cursor on clickable input elements */
+label, input[type=button], input[type=submit], button { cursor: pointer; }
+
+html {
+  font-style:   normal;
+  font-family:  "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
+  font-size:    12px;
+}
+
+html, body {
+  h1 {
+    font-size:    24px;
+    font-weight:  400;
+  }
+}
+
+.photo {
+  display:  inline-block;
+  width:    150px;
+  height:   150px;
+  padding:  5px;
+
+  img {
+    width:  100%;
+    height: auto;
+  }
+}
