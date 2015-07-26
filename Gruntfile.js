@@ -20,17 +20,21 @@ module.exports = function(grunt) {
       }
     },
 
+    concat: {
+      css: {
+        files: {
+          'dist/phubo.scss' : ['app/assets/style/*.scss']
+        }
+      }
+    },
+
     sass: {
       options: {
-        sourceMap: false
+        sourceMap: true
       },
       dist: {
-        files: {
-          'dist/phubo.css': [
-            'app/assets/style/reset.css',
-            'app/assets/style/main.css'
-          ]
-        }
+        src: 'dist/phubo.scss',
+        dest: 'dist/phubo.css'
       }
     },
 
@@ -93,7 +97,7 @@ module.exports = function(grunt) {
 
       styles: {
         files:['app/assets/**/*.scss'],
-        tasks: ['sass', 'livereload']
+        tasks: ['concat:css', 'sass', 'livereload']
       },
 
       html: {
@@ -104,7 +108,7 @@ module.exports = function(grunt) {
 
     clean: {
       es6:    ['dist/phubo.js'],
-      styles: ['dist/phubo.css'],
+      styles: ['dist/phubo.css', 'dist/phubo.scss'],
       html:   ['dist/index.html'],
       all:    ['dist']
     },
@@ -112,6 +116,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build',[
     'browserify',
+    'concat:css',
     'sass',
     'copy'
   ]);

@@ -13,7 +13,6 @@ addRoute('photos', () => {
 });
 
 addRoute('', () => {
-  debugger;
   appView.yield(PhotosView);
 
   console.log('now on index !');

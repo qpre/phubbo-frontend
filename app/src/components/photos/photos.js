@@ -29,8 +29,11 @@ export default class PhotosView extends React.Component {
     }
 
     render () {
-        return <div className='photos'>
-            {this.renderPhotos()}
+        return <div>
+          <h1>Photos</h1>
+          <div className='photos'>
+              {this.renderPhotos()}
+          </div>
         </div>;
     }
 };
