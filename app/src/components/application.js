@@ -1,5 +1,7 @@
 import {currentRoute} from '../modules/Router/router';
 import {publish, subscribe} from '../modules/Notifier/notifier.js';
+import {FBLoginButton} from '../components/Social/fblogin.js';
+import {FBLogoutButton} from '../components/Social/fblogout.js';
 
 class ApplicationComponent extends React.Component {
   constructor(props) {
@@ -15,15 +17,18 @@ class ApplicationComponent extends React.Component {
   }
 
   renderYield () {
-    if (!this.state.yield) { return 'no yield'; }
+    if (!this.state.yield) { return 'Not Found'; }
 
     return React.createElement(this.state.yield);
   }
 
   render () {
-      return <div>
-          {this.renderYield()}
-      </div>;
+    return <div>
+      <FBLoginButton /><FBLogoutButton />
+      <div>
+        {this.renderYield()}
+      </div>
+    </div>;
   }
 };
 

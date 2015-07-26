@@ -1,5 +1,6 @@
 import {initRouter, addRoute, navigate} from './modules/Router/router';
 import {ApplicationView} from './components/application';
+import {initFBPlugin} from './modules/Social/facebook';
 import PhotosView from './components/Photos/photos';
 
 initRouter();
@@ -13,7 +14,7 @@ addRoute('photos', () => {
 });
 
 addRoute('', () => {
-  appView.yield(PhotosView);
-
   console.log('now on index !');
 });
+
+initFBPlugin();
