@@ -1,6 +1,8 @@
-let routes        = [];
-let root          = '';
-let currentRoute  = null;
+import {publish, subscribe} from '../Notifier/notifier';
+
+let routes            = [];
+let root              = '';
+export let currentRoute   = null;
 
 function onLocationHashChange () {
   let hash = window.location.hash;
@@ -28,6 +30,7 @@ function checkHashRoute (hash=null) {
       match.shift();
       // proceed with route's handler
       route.handler.apply({}, match);
+      publish('router:changed');
       // early return, we don't want to keep on matching
       return;
     }

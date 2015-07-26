@@ -88,7 +88,7 @@ module.exports = function(grunt) {
     regarde: {
       es6: {
         files:['app/src/**/*.js'],
-        tasks: ['jscs', 'browserify', 'livereload']
+        tasks: ['browserify', 'livereload']
       },
 
       styles: {
@@ -111,7 +111,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build',[
-    'jscs',
     'browserify',
     'sass',
     'copy'
