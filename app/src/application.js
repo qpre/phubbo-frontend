@@ -6,4 +6,6 @@ addRoute('photos', () => {
   console.log('now on photos !');
 });
 
-navigate('photos');
+addRoute('', () => {
+  console.log('now on index !');
+});

@@ -26,7 +26,10 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/phubo.css': 'app/assets/main.scss'
+          'dist/phubo.css': [
+            'app/assets/style/reset.css',
+            'app/assets/style/main.css'
+          ]
         }
       }
     },

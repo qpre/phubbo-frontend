@@ -1,5 +1,5 @@
 let routes        = [];
-let root          = '/';
+let root          = '';
 let currentRoute  = null;
 
 function onLocationHashChange () {
@@ -28,6 +28,8 @@ function checkHashRoute (hash=null) {
       match.shift();
       // proceed with route's handler
       route.handler.apply({}, match);
+      // early return, we don't want to keep on matching
+      return;
     }
   }
 }
@@ -36,10 +38,16 @@ export function navigate (path) {
   // defaulting path to root
   path = path || root;
 
+  window.location.href.match(/#(.*)$/);
   window.location.href = `${window.location.href.replace(/#(.*)$/, '')}#${path}`;
 }
 
 export function addRoute (re, handler, root) {
+  // filtering '' as root path, that might match with every other one
+  if (re === '') {
+    re = /^\s*$/;
+  }
+
   // register route
   routes.push({re: re, handler: handler});
 
