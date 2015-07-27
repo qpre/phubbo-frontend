@@ -1,28 +1,105 @@
-import {publish, subscribe} from '../../modules/Notifier/notifier';
-import {navigate} from '../../modules/Router/router';
+import {publish, subscribe} from '../Notifier/notifier';
+import {navigate} from '../Router/router';
+import * as Store from '../Data/store';
 
-export var profile = {
+let FBProfile = {
   id: null,
   name: '',
-  photos: []
+  photos: [],
+
+  connected: false
+}
+
+function saveProfile () {
+  Store.set('facebook:profile', FBProfile);
+}
+
+export function initFBDriver () {
+  // Setting up model
+  Store.set('FBProfile', {
+    id: null,
+    name: '',
+    photos: [],
+
+    connected: false
+  });
+
+  loadFBSdk();
 };
 
-export function initFBPlugin () {
-  window.fbAsyncInit = function () {
-    window.FB.init({
-      appId : '293516484105634',
-      status: true, // check login status
-      cookie: true, // enable cookies to allow the server to access the session
-      xfbml : true,  // parse XFBML
-      version: 'v2.3'
-    });
+function setupListeners () {
+  window.FB.Event.subscribe("auth.authResponseChange", (response) => {
+    onAuthStatusChanged(response);
+  });
 
-    window.FB.Event.subscribe("auth.authResponseChange", function(response) {
-      if (response.status === "connected") {
-        publish('facebook:connected');
-        getProfile();
+  subscribe('store:facebook:profile', () => {
+    if (FBProfile.connected) {
+      getProfile();
+      getPhotos();
+    }
+  });
+}
+
+export function checkStatus () {
+  debugger;
+  window.FB.getLoginStatus((response) => {
+    onAuthStatusChanged(response);
+  });
+}
+
+function onAuthStatusChanged (response) {
+  switch (response.status) {
+    case 'connected':
+      FBProfile.connected = true;
+    break;
+    case 'not_authorized':
+    case 'unknown':
+      FBProfile.connected = false;
+    break;
+  }
+
+  saveProfile();
+}
+
+export function getProfile () {
+  FB.api("/me", "get", {}, (result) => {
+    if (result.error) { navigate(''); }
+
+    FBProfile['id']         = result.id;
+    FBProfile['name']       = result.name;
+
+    saveProfile();
+  });
+}
+
+function getPhotos() {
+  FB.api('me/photos', "get", {}, (result) => {
+    if (result.error) { navigate(''); }
+    let photos = result.data;
+
+    for (let p of photos) {
+      if (p.images && (p.images.length > 0)){
+        FBProfile.photos.push({ url: p.images[0].source });
       }
-    });
+    }
+
+    saveProfile();
+  });
+}
+
+function setFBConfig () {
+  window.FB.init({
+    appId : '293516484105634',
+    status: true, // check login status
+    cookie: true, // enable cookies to allow the server to access the session
+    xfbml : true,  // parse XFBML
+    version: 'v2.3'
+  });
+}
+
+function loadFBSdk () {
+  window.fbAsyncInit = function () {
+    onFBSdkLoaded()
   };
 
   (function (d) {
@@ -33,32 +110,10 @@ export function initFBPlugin () {
     js.src = '//connect.facebook.net/en_US/all.js';
     d.getElementsByTagName('head')[0].appendChild(js);
   }(document));
-};
-
-export function getProfile () {
-  FB.api("/me", "get", {}, (result) => {
-    if (result.error) { navigate(''); }
-
-    profile['id']         = result.id;
-    profile["name"]       = result.name;
-
-    publish('facebook:profile:changed');
-    getPhotos();
-  });
 }
 
-function getPhotos() {
-  FB.api('me/photos', "get", {}, (result) => {
-    if (result.error) { navigate(''); }
-    debugger;
-    let photos = result.data;
-
-    for (let p of photos) {
-      if (p.images && (p.images.length > 0)){
-        profile.photos.push({ url: p.images[0].source });
-      }
-    }
-
-    publish('facebook:photos:changed');
-  });
+function onFBSdkLoaded () {
+  setFBConfig();
+  setupListeners();
+  checkStatus();
 }

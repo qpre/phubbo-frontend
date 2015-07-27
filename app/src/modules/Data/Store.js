@@ -9,8 +9,15 @@ export function set (key, data) {
   store[key] = data;
 
   if (pValue !== undefined) {
-    publish(`store:update:${key}`);
+    publish(`store:update:${key}`, store[key]);
   }
+}
+
+export function update (key, hash) {
+  let pValue = store[key];
+
+  store[key] = Object.assign(pValue || {}, key);
+  publish(`store:update:${key}`, store[key]);
 }
 
 export function remove (key) {
