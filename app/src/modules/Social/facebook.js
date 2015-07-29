@@ -41,7 +41,6 @@ function setupListeners () {
 }
 
 export function checkStatus () {
-  debugger;
   window.FB.getLoginStatus((response) => {
     onAuthStatusChanged(response);
   });

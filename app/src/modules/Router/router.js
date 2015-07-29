@@ -30,7 +30,7 @@ function checkHashRoute (hash=null) {
       match.shift();
       // proceed with route's handler
       route.handler.apply({}, match);
-      publish('router:changed');
+      publish('router:changed', currentRoute);
       // early return, we don't want to keep on matching
       return;
     }

@@ -1,19 +1,26 @@
 import {initRouter, addRoute, navigate} from './modules/Router/router';
-import {ApplicationView} from './components/application';
+import {ApplicationLayout} from './layouts/application';
 import {initFBDriver} from './modules/Social/facebook';
-import PhotosView from './components/Photos/photos';
+import IndexLayout from './layouts/Index/index';
 
 initRouter();
 
-let appView = React.render(ApplicationView, document.body);
+let appView = React.render(ApplicationLayout, document.body);
 
 addRoute('photos', () => {
-  appView.yield(PhotosView);
+  appView.yield(PhotosViewer);
+
+  console.log('now on photos !');
+});
+
+addRoute('profile', () => {
 
   console.log('now on photos !');
 });
 
 addRoute('', () => {
+  appView.yield(IndexLayout);
+
   console.log('now on index !');
 });
 

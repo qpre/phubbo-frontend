@@ -1,4 +1,5 @@
 import {publish, subscribe} from '../../modules/Notifier/notifier';
+import * as Obj from '../../lib/polyfills/object';
 
 let store     = {};
 let observers = {};
@@ -16,7 +17,7 @@ export function set (key, data) {
 export function update (key, hash) {
   let pValue = store[key];
 
-  store[key] = Object.assign(pValue || {}, key);
+  store[key] = Obj.assign(pValue || {}, key);
   publish(`store:update:${key}`, store[key]);
 }
 

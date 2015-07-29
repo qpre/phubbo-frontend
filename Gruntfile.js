@@ -41,7 +41,8 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         files: {
-          'dist/index.html': 'app/index.html'
+          'dist/index.html': 'app/index.html',
+          'dist/assets/img/home-bg.jpg': 'app/assets/img/home-bg.jpg'
         }
       }
     },
@@ -111,7 +112,7 @@ module.exports = function(grunt) {
       styles: ['dist/phubo.css', 'dist/phubo.scss'],
       html:   ['dist/index.html'],
       all:    ['dist']
-    },
+    }
   });
 
   grunt.registerTask('build',[
