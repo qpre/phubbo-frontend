@@ -13,7 +13,7 @@ export default class SessionLoginLayout extends React.Component {
 
   validate () {
     if ((this.state.username === 'test') && (this.state.password === 'toto')) {
-      navigate('user/photos');
+      navigate('user/me');
     } else {
       (document.getElementsByClassName('session-login-layout'))[0].classList.add('shake');
     }
