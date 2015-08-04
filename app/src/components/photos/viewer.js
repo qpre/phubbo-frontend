@@ -1,21 +1,22 @@
 import {publish, subscribe} from '../../modules/Notifier/notifier';
-import {profile, getProfile} from '../../modules/Social/facebook';
+import {getProfile, getPhotos} from '../../modules/Social/facebook';
+import * as Store from '../../modules/Data/store';
 
-export default class PhotosViewer extends React.Component {
+export class PhotosViewer extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       photos: []
     };
+
+    subscribe('store:update:facebook:profile', () => {
+      this.setState({ photos: Store.get('facebook:profile').photos });
+    });
   }
 
   componentWillMount () {
-    getProfile();
-
-    subscribe('facebook:photos:changed', () => {
-      this.setState({ photos: profile.photos });
-    });
+    getPhotos();
   }
 
   renderPhotos () {

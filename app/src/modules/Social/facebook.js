@@ -35,7 +35,6 @@ function setupListeners () {
   subscribe('store:facebook:profile', () => {
     if (FBProfile.connected) {
       getProfile();
-      getPhotos();
     }
   });
 }
@@ -71,9 +70,12 @@ export function getProfile () {
   });
 }
 
-function getPhotos() {
+export function getPhotos() {
   FB.api('me/photos', "get", {}, (result) => {
-    if (result.error) { navigate(''); }
+    if (result.error) {
+      console.error('Facebook: can\'t load photos');
+      return;
+    }
     let photos = result.data;
 
     for (let p of photos) {

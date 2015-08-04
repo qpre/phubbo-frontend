@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     concat: {
       css: {
         files: {
-          'dist/phubo.scss' : ['app/assets/style/*.scss']
+          'dist/assets/css/phubo.scss' : ['app/public/assets/style/*.scss']
         }
       }
     },
@@ -33,17 +33,8 @@ module.exports = function(grunt) {
         sourceMap: true
       },
       dist: {
-        src: 'dist/phubo.scss',
-        dest: 'dist/phubo.css'
-      }
-    },
-
-    copy: {
-      dist: {
-        files: {
-          'dist/index.html': 'app/index.html',
-          'dist/assets/img/home-bg.jpg': 'app/assets/img/home-bg.jpg'
-        }
+        src: 'dist/assets/css/phubo.scss',
+        dest: 'dist/assets/css/phubo.css'
       }
     },
 
@@ -62,7 +53,7 @@ module.exports = function(grunt) {
         options:{
           port:     9000,
           hostname: "0.0.0.0",
-          base:     'dist',
+          base:     ['dist', 'app/public'],
 
           // Livereload needs connect to insert a cJavascript snippet
           // in the pages it serves. This requires using a custom connect middleware
@@ -73,7 +64,8 @@ module.exports = function(grunt) {
               require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
 
               // Serve the project folder
-              connect.static(options.base[0])
+              connect.static(options.base[0]),
+              connect.static(options.base[1])
             ];
           }
         }
@@ -97,7 +89,7 @@ module.exports = function(grunt) {
       },
 
       styles: {
-        files:['app/assets/**/*.scss'],
+        files:['app/src/styles/**/*.scss'],
         tasks: ['concat:css', 'sass', 'livereload']
       },
 
@@ -109,7 +101,7 @@ module.exports = function(grunt) {
 
     clean: {
       es6:    ['dist/phubo.js'],
-      styles: ['dist/phubo.css', 'dist/phubo.scss'],
+      styles: ['dist/assets/css/phubo.css', 'dist/assets/css/phubo.scss'],
       html:   ['dist/index.html'],
       all:    ['dist']
     }
@@ -118,8 +110,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build',[
     'browserify',
     'concat:css',
-    'sass',
-    'copy'
+    'sass'
   ]);
 
   // Creates the `server` task

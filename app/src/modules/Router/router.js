@@ -1,4 +1,5 @@
 import {publish, subscribe} from '../Notifier/notifier';
+import {SiteMap} from './routes';
 
 let routes            = [];
 let root              = '';
@@ -85,6 +86,11 @@ export function flushRoutes () {
 }
 
 export function initRouter () {
+  // Adding default routes
+  for (let r of SiteMap) {
+    addRoute(r.route, r.handler);
+  }
+
   // observing hashchange event
   window.addEventListener('hashchange', () => {
     onLocationHashChange();
