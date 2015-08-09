@@ -5,20 +5,20 @@ let routes            = [];
 let root              = '';
 export let currentRoute   = null;
 
-function onLocationHashChange () {
+function onLocationChange () {
   let hash = window.location.hash;
 
   // early return if the hash has not changed
-  if (window.location.hash === currentRoute) { return; }
+  if (hash === currentRoute) { return; }
 
   // this is our current state
   currentRoute = hash;
 
   // do we have any handler for this route ?
-  checkHashRoute(currentRoute);
+  checkRoute(currentRoute);
 };
 
-function checkHashRoute (hash=null) {
+function checkRoute (hash=null) {
   // of no hash was found, get the current fragment
   let fragment = (hash !== null) ? hash : getFragment();
 
@@ -40,10 +40,10 @@ function checkHashRoute (hash=null) {
 
 export function navigate (path) {
   // defaulting path to root
-  path = path || root;
+  path = path || '';
 
-  window.location.href.match(/#(.*)$/);
-  window.location.href = `${window.location.href.replace(/#(.*)$/, '')}#${path}`;
+  window.history.pushState(null, null, '#' + clearSlashes(path));
+  checkRoute();
 }
 
 export function addRoute (re, handler, root) {
@@ -54,11 +54,6 @@ export function addRoute (re, handler, root) {
 
   // register route
   routes.push({re: re, handler: handler});
-
-  // is it the root route ? (<- try on reading this without laughing !)
-  if (root) {
-    root = re;
-  }
 }
 
 export function removeRoute ({re, handler}) {
@@ -93,12 +88,17 @@ export function initRouter () {
 
   // observing hashchange event
   window.addEventListener('hashchange', () => {
-    onLocationHashChange();
+    onLocationChange();
+  });
+
+  // observing popstate event
+  window.addEventListener('popstate', () => {
+    onLocationChange();
   });
 
   // starting the router upon page load
   window.addEventListener('load', () => {
-    onLocationHashChange();
+    onLocationChange();
   });
 };
 
@@ -109,5 +109,5 @@ export function getFragment () {
 }
 
 export function clearSlashes (string) {
-  string.toString().replace(/\$/, '').replace(/^\//, '');
+  return string.toString().replace(/\$/, '').replace(/^\//, '');
 }

@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     concat: {
       css: {
         files: {
-          'dist/assets/css/phubo.scss' : ['app/public/assets/style/*.scss']
+          'dist/assets/css/phubo.scss' : ['app/src/styles/*.scss']
         }
       }
     },
@@ -96,14 +96,11 @@ module.exports = function(grunt) {
       html: {
         files:['app/index.html'],
         tasks: ['copy', 'livereload']
-      },
+      }
     },
 
     clean: {
-      es6:    ['dist/phubo.js'],
-      styles: ['dist/assets/css/phubo.css', 'dist/assets/css/phubo.scss'],
-      html:   ['dist/index.html'],
-      all:    ['dist']
+      all: ['dist']
     }
   });
 
