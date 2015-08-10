@@ -16,7 +16,7 @@ export default class SessionLoginLayout extends React.Component {
 
     if ((this.state.username === 'test') && (this.state.password === 'toto')) {
       Store.set('name', this.state.username);
-      navigate('user/me');
+      navigate('/');
     } else {
       (document.getElementsByClassName('session-login-layout'))[0].classList.add('shake');
     }

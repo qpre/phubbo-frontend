@@ -6,6 +6,6 @@ import {navigate} from '../Router/router';
  */
 export function checkAuthorized () {
   if (Store.get('name') === undefined) {
-    navigate('/');
+    navigate('session/login');
   }
 }

@@ -1,5 +1,5 @@
 import UserPhotosLayout from '../../layouts/user/photos';
-import UserMeLayout from '../../layouts/user/me';
+import HomeLayout from '../../layouts/user/home';
 import IndexLayout from '../../layouts/index/index';
 import SessionLoginLayout from '../../layouts/session/login';
 import {appView} from '../../application';
@@ -13,9 +13,9 @@ export let SiteMap = [
   },
 
   {
-    route:    'user/me',
+    route:    '',
     handler:  () => {
-      appView.yield(UserMeLayout);
+      appView.yield(HomeLayout);
     }
   },
 
@@ -27,7 +27,7 @@ export let SiteMap = [
   },
 
   {
-    route:    '',
+    route:    'index',
     handler:  () => {
       appView.yield(IndexLayout);
     }
