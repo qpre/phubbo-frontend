@@ -2,4 +2,4 @@ deployment:
   production:
     branch: master
     commands:
-      - grunt aws_s3:production
+      - grunt build aws_s3:production
