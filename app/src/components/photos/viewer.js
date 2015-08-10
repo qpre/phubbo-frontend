@@ -1,6 +1,6 @@
 import {publish, subscribe} from '../../modules/Notifier/notifier';
 import {getProfile, getPhotos} from '../../modules/Social/facebook';
-import * as Store from '../../modules/Data/store';
+import * as Store from '../../modules/Data/Store';
 
 export class PhotosViewer extends React.Component {
   constructor(props) {

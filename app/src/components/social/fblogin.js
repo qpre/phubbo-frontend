@@ -1,6 +1,6 @@
 import {navigate} from '../../modules/Router/router';
 import {publish, subscribe} from '../../modules/Notifier/notifier';
-import * as Store from '../../modules/Data/store';
+import * as Store from '../../modules/Data/Store';
 
 export class FBLoginButton extends React.Component {
   constructor (props) {

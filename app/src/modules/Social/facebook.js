@@ -1,6 +1,6 @@
 import {publish, subscribe} from '../Notifier/notifier';
 import {navigate} from '../Router/router';
-import * as Store from '../Data/store';
+import * as Store from '../Data/Store';
 
 let FBProfile = {
   id: null,

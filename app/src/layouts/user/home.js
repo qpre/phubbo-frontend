@@ -1,7 +1,7 @@
 import {publish, subscribe} from '../../modules/Notifier/notifier';
 import {navigate} from '../../modules/Router/router';
 import {checkAuthorized} from '../../modules/Router/filters';
-import * as Store from '../../modules/Data/store';
+import * as Store from '../../modules/Data/Store';
 
 export default class HomeLayout extends React.Component {
   constructor(props) {

@@ -1,4 +1,4 @@
-import * as Store from '../Data/store';
+import * as Store from '../Data/Store';
 import {navigate} from '../Router/router';
 
 /**

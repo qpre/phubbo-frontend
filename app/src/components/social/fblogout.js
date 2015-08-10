@@ -1,6 +1,6 @@
 import {publish, subscribe} from '../../modules/Notifier/notifier';
 import {navigate} from '../../modules/Router/router';
-import * as Store from '../../modules/Data/store';
+import * as Store from '../../modules/Data/Store';
 
 export class FBLogoutButton extends React.Component {
   constructor (props) {
