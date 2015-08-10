@@ -1,13 +1,3 @@
-dependencies:
-  pre:
-    - npm install -g bower
-    - npm install -g ember-cli
-  override:
-    - npm i
-    - bower i
-    - sudo pip install awscli
-    
-
 deployment:
   production:
     branch: master
