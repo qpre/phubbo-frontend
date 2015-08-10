@@ -126,10 +126,7 @@ module.exports = function(grunt) {
       },
       production: {
         options: {
-          bucket: 'phubo',
-          params: {
-            ContentEncoding: 'gzip' // applies to all the files!
-          }
+          bucket: 'phubo'
         },
         files: [
           {expand: true, cwd: 'dist/', src: ['**'], dest: ''},
