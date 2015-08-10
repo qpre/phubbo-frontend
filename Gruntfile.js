@@ -101,12 +101,48 @@ module.exports = function(grunt) {
 
     clean: {
       all: ['dist']
+    },
+
+    copy: {
+      public: {
+        files: [
+          {
+            expand: true,
+            cwd: 'app/public/',
+            src: ['**/*'],
+            dest: 'dist/',
+            filter: 'isFile'}
+        ]
+      }
+    },
+
+    aws_s3: {
+      options: {
+        accessKeyId: '' + process.env.AWSAccessKeyId, // Use the variables
+        secretAccessKey: '' + process.env.AWSSecretKey, // You can also use env variables
+        region: 'eu-west-1',
+        uploadConcurrency: 5, // 5 simultaneous uploads
+        downloadConcurrency: 5 // 5 simultaneous downloads
+      },
+      production: {
+        options: {
+          bucket: 'phubo',
+          params: {
+            ContentEncoding: 'gzip' // applies to all the files!
+          }
+        },
+        files: [
+          {expand: true, cwd: 'dist/', src: ['**'], dest: ''},
+        ]
+      }
     }
   });
 
   grunt.registerTask('build',[
+    'clean',
     'browserify',
     'concat:css',
+    'copy:public',
     'sass'
   ]);
 
