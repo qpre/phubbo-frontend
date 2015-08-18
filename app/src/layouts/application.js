@@ -21,7 +21,7 @@ class ApplicationComponent extends React.Component {
   }
 
   render () {
-    return <div className='main-container'>
+    return <div className='application'>
       <div id='background'></div>
       {this.renderYield()}
     </div> ;

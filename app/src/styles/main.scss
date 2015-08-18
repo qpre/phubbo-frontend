@@ -66,11 +66,26 @@ body {
     opacity: 0.4;
   }
 
-  .main-container {
+  .application {
     .index-layout, .session-login-layout, .user-me-layout {
-      height: 200px;
+      position: absolute;
 
-      color: white;
+			-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+			-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+			box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+			background-color: #FDFEFF;
+
+			top:	15px;
+			right: 15px;
+			left: 15px;
+			bottom: 15px;
+
+			overflow: hidden;
+
+			border-radius: 5px;
+
+      color: #9E9FA0;
 
       text-align: center;
     }
@@ -88,18 +103,90 @@ body {
   height: 100%;
 }
 
-.photo {
-  display:  inline-block;
-  width:    150px;
-  height:   150px;
-  padding:  5px;
-
-  img {
-    width:  100%;
-    height: auto;
-  }
-}
+// .photo {
+//   display:  inline-block;
+//   width:    150px;
+//   height:   150px;
+//   padding:  5px;
+//
+//   img {
+//     width:  100%;
+//     height: auto;
+//   }
+// }
 
 a {
 	cursor: pointer;
+}
+
+.menu {
+	width: 250px;
+
+	color: #D7D8D7;
+
+	background: linear-gradient(#232E2C, #1D2830);
+
+	&.left {
+		-webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+		-moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+		box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+	}
+}
+
+ul.menu {
+	li {
+		position: relative;
+		height: 30px;
+		padding: 10px;
+	}
+
+	.profile {
+		padding-top: 15px;
+		display:table;
+		width:100%;
+		table-layout:fixed;
+
+		font-size: 18px;
+
+		height: 30px;
+
+		border-bottom: 1px solid #8F9498;
+
+		.cell {
+			display:table-cell;
+			text-align:center;
+			vertical-align: middle;
+			height: 100%;
+
+			&.photo {
+				width: 50px;
+
+				vertical-align: text-bottom;
+
+				img {
+					border: 1px solid #8F9498;
+					border-radius: 50%;
+
+					width: 32px;
+					height: 32px;
+				}
+			}
+
+			&.name {
+				padding-left: 15px;
+				text-align: left;
+				font-weight: 500;
+				text-transform: capitalize;
+			}
+
+			&.logout {
+				width: 50px;
+				font-size: 24px;
+			}
+		}
+	}
 }
