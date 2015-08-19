@@ -43,3 +43,11 @@ export function remove (key) {
 export function get (key) {
   return store[key];
 }
+
+window.debugData = () => {
+  let data = Storage.get('phubo_data');
+
+  if (data) {
+      return JSON.parse(data);
+  } 
+}
