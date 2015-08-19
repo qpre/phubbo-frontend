@@ -79,6 +79,60 @@ body {
 			left: 0;
 			right: 0;
 			bottom: 0;
+
+			.usericons {
+				margin-bottom: 50px;
+
+				li {
+					display: inline-block;
+
+					.icon {
+						position: relative;
+						margin: 20px;
+
+						width: 90px;
+						height: 90px;
+
+						img {
+							position: absolute;
+
+							margin: auto;
+
+							top: 0;
+							bottom: 0;
+							right: 0;
+							left: 0;
+
+							background-color: #333;
+							border: 1px solid #8F9498;
+
+							width: 80px;
+							height: 80px;
+
+							border-radius: 50%;
+
+							transition: width 200ms ease-in, height 200ms ease-in;
+						}
+					}
+
+					&:hover {
+						.icon {
+							img {
+								transition: width 200ms ease-in, height 200ms ease-in;
+
+								width: 90px;
+								height: 90px;
+							}
+						}
+					}
+
+					.name {
+						text-transform: capitalize;
+						color: #FDFEFF;
+						font-size: 16px;
+					}
+				}
+			}
 		}
 
     .index-layout, .user-me-layout {
