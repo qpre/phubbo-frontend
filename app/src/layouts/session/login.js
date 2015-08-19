@@ -45,7 +45,7 @@ export default class SessionLoginLayout extends React.Component {
     return this.state.knownUsers.map((user) => {
       return <li onClick={this.selectUser(user)}>
         <div className='icon'>
-          <img src={user.icon} />
+          <img src={user.icon || 'https://raw.githubusercontent.com/qpre/AEngine/master/readme/baracuda.png'} />
         </div>
         <div className='name'>{user.name}</div>
       </li>;
