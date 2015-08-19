@@ -67,7 +67,21 @@ body {
   }
 
   .application {
-    .index-layout, .session-login-layout, .user-me-layout {
+
+		.session-login-layout {
+			position: absolute;
+			text-align: center;
+			height: 150px;
+
+			margin: auto;
+
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+
+    .index-layout, .user-me-layout {
       position: absolute;
 
 			-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
