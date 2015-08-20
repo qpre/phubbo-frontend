@@ -95,7 +95,7 @@ body {
 				&.single {
 					.selected {
 						top: 	calc(100% / 2 - 140px);
-						left: calc(50% - 45px) !important;
+						left: calc(50% - 70px) !important;
 
 						img {
 							width: 90px;
@@ -132,8 +132,8 @@ body {
 					bottom: 0;
 					margin: auto;
 
-					transition: left 600ms ease-out, top 1200ms ease-out, opacity 400ms ease-in;
-					transition-delay: 600ms;
+					transition: left 400ms ease-out, top 400ms linear, opacity 400ms ease-in;
+					transition-delay: 400ms;
 
 					opacity: 1;
 
@@ -191,8 +191,8 @@ body {
 						font-size: 	28px;
 						text-transform: capitalize;
 
-						transition: opacity 400ms ease-in;
-						transition-delay: 1400ms;
+						transition: opacity 300ms ease-in;
+						transition-delay: 1000ms;
 						opacity: 0;
 					}
 				}
