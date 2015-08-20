@@ -46,7 +46,8 @@ export default class SessionLoginLayout extends React.Component {
 
   renderKnownUsers () {
     return this.state.knownUsers.map((user) => {
-      let left = (window.screen.availWidth / 2) - this.state.knownUsers.indexOf(user) * 140;
+      let index = this.state.knownUsers.indexOf(user);
+      let left = (window.outerWidth / 2) - ((140 * (index - 1)) + 70);
       return <li onClick={this.selectUser(user)} style={{left: left + 'px'}} >
         <div className='name'>{user.name}</div>
         <div className='icon'>

@@ -22,7 +22,7 @@ label, input[type=button], input[type=submit], button { cursor: pointer; }
 html {
   height: 100%;
   font-style:   normal;
-  font-family:  'Raleway', "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
+  font-family:  'Roboto', "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
   font-size:    12px;
 }
 
@@ -94,7 +94,7 @@ body {
 
 				&.single {
 					.selected {
-						top: calc(100% / 2 - 140px);
+						top: 	calc(100% / 2 - 140px);
 						left: calc(50% - 45px) !important;
 
 						img {
@@ -113,6 +113,7 @@ body {
 
 					li:not(.selected) {
 						opacity: 0;
+						pointer-events: none;
 					}
 				}
 
