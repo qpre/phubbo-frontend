@@ -36,18 +36,23 @@ export default class SessionLoginLayout extends React.Component {
   }
 
   selectUser (user) {
-    return () => {
+    return (e) => {
+      e.currentTarget.classList.add('selected');
+
+      document.body.querySelector('.usericons').classList.add('single');
       this.setState({ username: user.name });
     }
   }
 
   renderKnownUsers () {
     return this.state.knownUsers.map((user) => {
-      return <li onClick={this.selectUser(user)}>
+      let left = (window.screen.availWidth / 2) - this.state.knownUsers.indexOf(user) * 140;
+      return <li onClick={this.selectUser(user)} style={{left: left + 'px'}} >
+        <div className='name'>{user.name}</div>
         <div className='icon'>
           <img src={user.icon || 'https://raw.githubusercontent.com/qpre/AEngine/master/readme/baracuda.png'} />
         </div>
-        <div className='name'>{user.name}</div>
+        <div className='hello'>Hello {user.name}</div>
       </li>;
     })
   }
@@ -57,9 +62,15 @@ export default class SessionLoginLayout extends React.Component {
       <ul className='usericons'>
         {this.renderKnownUsers()}
       </ul>
-      <input type="text" placeholder='username' value={this.state.username} onChange={this.handleChange.bind(this, 'username')} />
-      <input type="password" placeholder='password' value={this.state.password} onChange={this.handleChange.bind(this, 'password')} />
-      <button onClick={this.validate.bind(this)}>login</button>
     </div>;
+
+    // return <div className='session-login-layout centered-content fadeIn animated'>
+    //   <ul className='usericons'>
+    //     {this.renderKnownUsers()}
+    //   </ul>
+    //   <input type="text" placeholder='username' value={this.state.username} onChange={this.handleChange.bind(this, 'username')} />
+    //   <input type="password" placeholder='password' value={this.state.password} onChange={this.handleChange.bind(this, 'password')} />
+    //   <button onClick={this.validate.bind(this)}>login</button>
+    // </div>;
   }
 };

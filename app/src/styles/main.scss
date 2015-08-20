@@ -81,17 +81,68 @@ body {
 			bottom: 0;
 
 			.usericons {
-				margin-bottom: 50px;
+				position: absolute;
+
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+
+				width: calc(100%);
+				height: calc(100%);
+
+				&.single {
+					.selected {
+						top: calc(100% / 2 - 140px);
+						left: calc(50% - 45px) !important;
+
+						img {
+							width: 90px;
+							height: 90px;
+						}
+
+						.name {
+							opacity: 0;
+						}
+
+						.hello {
+							opacity: 1;
+						}
+					}
+
+					li:not(.selected) {
+						opacity: 0;
+					}
+				}
 
 				li {
-					display: inline-block;
+					cursor: pointer;
+
+					display: block;
+					position: absolute;
+
+					text-align: center;
+
+					width: 140px;
+					height: 150px;
+
+					top: 0;
+					bottom: 0;
+					margin: auto;
+
+					transition: left 600ms ease-out, top 1200ms ease-out, opacity 400ms ease-in;
+					transition-delay: 600ms;
+
+					opacity: 1;
 
 					.icon {
 						position: relative;
-						margin: 20px;
 
-						width: 90px;
+						width: 100%;
 						height: 90px;
+
+						margin-bottom: 20px;
 
 						img {
 							position: absolute;
@@ -106,8 +157,8 @@ body {
 							background-color: #333;
 							border: 1px solid #8F9498;
 
-							width: 80px;
-							height: 80px;
+							width: 70px;
+							height: 70px;
 
 							border-radius: 50%;
 
@@ -118,18 +169,30 @@ body {
 					&:hover {
 						.icon {
 							img {
-								transition: width 200ms ease-in, height 200ms ease-in;
-
-								width: 90px;
-								height: 90px;
+								box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 							}
 						}
 					}
 
 					.name {
 						text-transform: capitalize;
-						color: #FDFEFF;
+						color: #444;
 						font-size: 16px;
+
+						transition: opacity 400ms ease-in;
+						opacity: 1;
+
+						text-align: center;
+					}
+
+					.hello {
+						color: 			#444;
+						font-size: 	28px;
+						text-transform: capitalize;
+
+						transition: opacity 400ms ease-in;
+						transition-delay: 1400ms;
+						opacity: 0;
 					}
 				}
 			}
@@ -246,8 +309,8 @@ ul.menu {
 
 			&.name {
 				padding-left: 15px;
-				text-align: left;
-				font-weight: 500;
+				text-align: 	left;
+				font-weight: 	500;
 				text-transform: capitalize;
 			}
 
