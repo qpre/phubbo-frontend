@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,700,500italic,700italic,900,900italic);
+
 /* maxvoltar.com/archive/-webkit-font-smoothing */
 html { -webkit-font-smoothing: antialiased; }
 
@@ -109,6 +111,10 @@ body {
 						.hello {
 							opacity: 1;
 						}
+
+						.password {
+							opacity: 1;
+						}
 					}
 
 					li:not(.selected) {
@@ -156,7 +162,7 @@ body {
 							left: 0;
 
 							background-color: #333;
-							border: 1px solid #8F9498;
+							border: 					1px solid #8F9498;
 
 							width: 70px;
 							height: 70px;
@@ -193,6 +199,14 @@ body {
 
 						transition: opacity 300ms ease-in;
 						transition-delay: 1000ms;
+						opacity: 0;
+					}
+
+					.password {
+						margin-top: 20px;
+
+						transition: opacity 300ms ease-in;
+						transition-delay: 1400ms;
 						opacity: 0;
 					}
 				}

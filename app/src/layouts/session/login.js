@@ -9,6 +9,9 @@ export default class SessionLoginLayout extends React.Component {
     this.state = {
       username: '',
       password: '',
+
+      selected: -1,
+
       knownUsers: []
     }
   }
@@ -37,23 +40,38 @@ export default class SessionLoginLayout extends React.Component {
 
   selectUser (user) {
     return (e) => {
-      e.currentTarget.classList.add('selected');
-
       document.body.querySelector('.usericons').classList.add('single');
-      this.setState({ username: user.name });
+      this.setState({
+        selected: this.state.knownUsers.indexOf(user),
+        username: user.name
+      });
     }
+  }
+
+  renderInput (user, selected) {
+    if (!selected) { return; }
+
+    return <input  type="password"
+              placeholder='password'
+              value={this.state.password}
+              onChange={this.handleChange.bind(this, 'password')} />
   }
 
   renderKnownUsers () {
     return this.state.knownUsers.map((user) => {
       let index = this.state.knownUsers.indexOf(user);
       let left = (window.outerWidth / 2) - ((140 * (index - 1)) + 70);
-      return <li onClick={this.selectUser(user)} style={{left: left + 'px'}} >
+
+      let selected = this.state.knownUsers.indexOf(user) === this.state.selected;
+      let selectedClass = (selected) ? 'selected' : '';
+
+      return <li onClick={this.selectUser(user)} style={{left: left + 'px'}} className={selectedClass}>
         <div className='name'>{user.name}</div>
         <div className='icon'>
           <img src={user.icon || 'https://raw.githubusercontent.com/qpre/AEngine/master/readme/baracuda.png'} />
         </div>
         <div className='hello'>Hello {user.name}</div>
+        <div className='password'>{ this.renderInput(user, selected) }</div>
       </li>;
     })
   }
