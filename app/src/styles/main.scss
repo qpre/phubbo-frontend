@@ -115,6 +115,10 @@ body {
 						.password {
 							opacity: 1;
 						}
+
+						.login {
+							opacity: 1;
+						}
 					}
 
 					li:not(.selected) {
@@ -203,11 +207,51 @@ body {
 					}
 
 					.password {
+						position: relative;
+
 						margin-top: 20px;
+
+						border-radius: 5px;
+						overflow: hidden;
 
 						transition: opacity 300ms ease-in;
 						transition-delay: 1400ms;
+
+						box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.3);
+
 						opacity: 0;
+
+						input {
+							margin: 0;
+							width: 100%;
+
+							border: none;
+					    background-color: rgba(0, 0, 0, 0.2);
+					    background-image: none !important;
+					    color: rgba(255, 255, 255, 0.66);
+					    border-radius: 5px;
+					    padding: 5px;
+						}
+					}
+
+					.login {
+						margin-top: 20px;
+
+						transition: opacity 300ms ease-in;
+						transition-delay: 1800ms;
+
+						opacity: 0;
+
+						button {
+							width: 30px;
+							height: 30px;
+
+							font-size: 27px;
+
+							border: 					1px solid #8F9498;;
+							border-radius: 50%;
+							background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeBAMAAADJHrORAAAAHlBM…MhymA8WcoqKPan8iMVx5NP7r5aPajuw/d/ej+o3v4wgEAa6MB3qSyTtAAAAAASUVORK5CYII=");
+						}
 					}
 				}
 			}

@@ -72,6 +72,13 @@ export default class SessionLoginLayout extends React.Component {
         </div>
         <div className='hello'>Hello {user.name}</div>
         <div className='password'>{ this.renderInput(user, selected) }</div>
+        <div className='login'>
+          { () => {
+            if (selected) {
+              return <button onClick={this.validate.bind(this)}><i className='pe-7s-angle-right'></i></button>
+            }}()
+          }
+        </div>
       </li>;
     })
   }
