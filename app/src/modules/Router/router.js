@@ -3,10 +3,11 @@ import {SiteMap} from './routes';
 
 let routes            = [];
 let root              = '';
+
 export let currentRoute   = null;
 
 function onLocationChange () {
-  let hash = window.location.hash;
+  let hash = clearSlashes(window.location.href.match(/#(.*)$/));
 
   // early return if the hash has not changed
   if (hash === currentRoute) { return; }
@@ -19,8 +20,8 @@ function onLocationChange () {
 };
 
 function checkRoute (hash=null) {
-  // of no hash was found, get the current fragment
-  let fragment = (hash !== null) ? hash : getFragment();
+  // if no hash was found, get the current fragment
+  let fragment = (hash !== null) ? hash : clearSlashes(window.location.href.match(/#(.*)$/));
 
   // check if a route fits the current hash
   for (let route of routes) {
@@ -30,6 +31,7 @@ function checkRoute (hash=null) {
     if (match) {
       match.shift();
       // proceed with route's handler
+      console.info(`ROUTER: processing to ${route.re}`);
       route.handler.apply({}, match);
       publish('router:changed', currentRoute);
       // early return, we don't want to keep on matching
@@ -43,7 +45,6 @@ export function navigate (path) {
   path = path || '';
 
   window.history.pushState(null, null, '#' + clearSlashes(path));
-  checkRoute();
 }
 
 export function addRoute (re, handler, root) {
@@ -86,28 +87,16 @@ export function initRouter () {
     addRoute(r.route, r.handler);
   }
 
-  // observing hashchange event
-  window.addEventListener('hashchange', () => {
-    onLocationChange();
-  });
-
   // observing popstate event
   window.addEventListener('popstate', () => {
     onLocationChange();
   });
 
-  // starting the router upon page load
-  window.addEventListener('load', () => {
-    onLocationChange();
-  });
+  // check for the current route
+  onLocationChange();
 };
 
-export function getFragment () {
-  let match = window.location.href.match(/#(.*)$/);
-
-  return clearSlashes(match ? match[1] : '');
-}
-
 export function clearSlashes (string) {
+  string = (string) ? string : '';
   return string.toString().replace(/\$/, '').replace(/^\//, '');
 }

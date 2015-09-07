@@ -146,12 +146,12 @@ module.exports = function(grunt) {
   // Creates the `server` task
   grunt.registerTask('server', [
     'build',
+    // Connect is no longer blocking other tasks, so it makes more sense to open the browser after the server starts
+    'open',
     // Starts the livereload server to which the browser will connect to
     // get notified of when it needs to reload
     'livereload-start',
     'connect',
-    // Connect is no longer blocking other tasks, so it makes more sense to open the browser after the server starts
-    'open',
     // Starts monitoring the folders and keep Grunt alive
     'regarde'
   ]);
