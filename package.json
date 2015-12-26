@@ -4,7 +4,13 @@
   "description": "Small description for phubo goes here",
   "private": true,
   "scripts": {},
-  "repository": "",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/qpre/phubo-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qpre/phubo-frontend/issues"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
