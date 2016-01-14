@@ -7,7 +7,7 @@ export class PhotosViewer extends React.Component {
     super(props);
 
     this.state = {
-      photos: []
+      photos: [],
     };
 
     subscribe('store:update:facebook:profile', () => {
@@ -15,24 +15,24 @@ export class PhotosViewer extends React.Component {
     });
   }
 
-  componentWillMount () {
+  componentWillMount() {
     getPhotos();
   }
 
-  renderPhotos () {
+  renderPhotos() {
     return this.state.photos.map((p) => {
       return <div className='photo'>
         <img src={p.url}/>
       </div>;
-    })
+    });
   }
 
-  render () {
-      return <div>
-        <h1>Photos</h1>
-        <div className='photos'>
-            {this.renderPhotos()}
-        </div>
-      </div>;
+  render() {
+    return <div>
+      <h1>Photos</h1>
+      <div className='photos'>
+          {this.renderPhotos()}
+      </div>
+    </div>;
   }
 };

@@ -3,27 +3,27 @@ import {navigate} from '../../modules/Router/router';
 import * as Store from '../../modules/Data/Store';
 
 export class FBLogoutButton extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
-      disabled: true
-    }
+      disabled: true,
+    };
   }
 
-  componentWillMount () {
+  componentWillMount() {
     subscribe('store:update:facebook:profile', (profile) => {
       this.setState({ disabled: !profile.connected });
     });
   }
 
-  logout () {
+  logout() {
     window.FB.logout((response) => {
       Store.update('facebook:profile', { connected: false });
     });
   }
 
-  render () {
+  render() {
     return <button onClick={this.logout} disabled={this.state.disabled} >FB Logout</button>;
   }
 }

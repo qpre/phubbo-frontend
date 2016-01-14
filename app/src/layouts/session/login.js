@@ -14,37 +14,36 @@ export default class SessionLoginLayout extends React.Component {
 
       selected: -1,
 
-      knownUsers: []
-    }
+      knownUsers: [],
+    };
   }
 
-  componentWillMount () {
+  componentWillMount() {
     let users = Store.get('knownUsers');
-    users && this.setState({knownUsers: Store.get('knownUsers') });
+    users && this.setState({ knownUsers: Store.get('knownUsers') });
   }
 
-  validate () {
-    post('http://phubo.herokuapp.com/session/login', {
+  validate() {
+    post('http://localhost:4080/api/auth/login', {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
     }).then((data) => {
       Store.set('name', this.state.username);
       this.state.knownUsers.push({ name: this.state.username });
       Store.set('knownUsers', this.state.knownUsers);
-      navigate('/');
+      navigate('');
     }).catch((err) => {
-      debugger;
       (document.getElementsByClassName('session-login-layout'))[0].classList.add('shake');
-    })
+    });
   }
 
-  handleChange (field, event) {
+  handleChange(field, event) {
     let state = {};
     state[field] = event.target.value;
     this.setState(state);
   }
 
-  renderPasswordField (selected) {
+  renderPasswordField(selected) {
     if (!selected) { return; }
 
     return <input  type="password"
@@ -53,7 +52,7 @@ export default class SessionLoginLayout extends React.Component {
               onChange={this.handleChange.bind(this, 'password')} />
   }
 
-  renderUsernameField (selected) {
+  renderUsernameField(selected) {
     if (!selected) { return; }
 
     return <input  type="text"
@@ -62,23 +61,25 @@ export default class SessionLoginLayout extends React.Component {
               onChange={this.handleChange.bind(this, 'username')} />
   }
 
-  selectIcon (index, name) {
+  selectIcon(index, name) {
     return (e) => {
       if (this.state.selected == index) { return; }
+
       document.body.querySelector('.usericons').classList.add('single');
       this.setState({
         selected: index,
-        username: ''
+        username: '',
       });
-    }
+    };
   }
 
-  render () {
+  render() {
     let icons = [];
 
     // render know user icons
     for (let user of this.state.knownUsers) {
       icons.push(() => {
+        let index = this.state.knownUsers.indexOf(user);
         let left = (window.outerWidth / 2) - ((140 * (index - 1)) + 70);
 
         let selected = (this.state.knownUsers.indexOf(user)) === this.state.selected;

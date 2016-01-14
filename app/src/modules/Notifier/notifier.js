@@ -1,8 +1,8 @@
 let topics        = {};
 let subscriberId  = -1;
 
-export function publish (topic, data) {
-  if ( !topics[topic] ) {
+export function publish(topic, data) {
+  if (!topics[topic]) {
     return false;
   }
 
@@ -16,7 +16,7 @@ export function publish (topic, data) {
   return true;
 }
 
-export function subscribe (topic, handler) {
+export function subscribe(topic, handler) {
   if (!topics[topic]) {
     topics[topic] = [];
   }
@@ -25,7 +25,7 @@ export function subscribe (topic, handler) {
 
   topics[topic].push({
     token: token,
-    handler: handler
+    handler: handler,
   });
 
   return token;

@@ -29,10 +29,10 @@ function checkRoute (hash=null) {
 
     // it's match !
     if (match) {
-      match.shift();
       // proceed with route's handler
       console.info(`ROUTER: processing to ${route.re}`);
       route.handler.apply({}, match);
+      currentRoute = match;
       publish('router:changed', currentRoute);
       // early return, we don't want to keep on matching
       return;
@@ -76,27 +76,30 @@ export function removeRoute ({re, handler}) {
   })
 }
 
-export function flushRoutes () {
+export function flushRoutes() {
   routes  = [];
   root    = '/';
 }
 
-export function initRouter () {
+export function initRouter() {
   // Adding default routes
   for (let r of SiteMap) {
     addRoute(r.route, r.handler);
   }
 
   // observing popstate event
-  window.addEventListener('popstate', () => {
-    onLocationChange();
-  });
+  window.onpopstate = (e) => {
+    if (e.state) {
+      // history changed because of pushState/replaceState
+      onLocationChange();
+    }
+  };
 
   // check for the current route
   onLocationChange();
 };
 
-export function clearSlashes (string) {
+export function clearSlashes(string) {
   string = (string) ? string : '';
-  return string.toString().replace(/\$/, '').replace(/^\//, '');
+  return string.toString().replace(/\$/, '').replace(/^\//, '').replace('#', '');
 }

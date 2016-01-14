@@ -4,7 +4,7 @@
  * @param {object} target
  * @param {object} sources
  */
-export function assign (target, ...sources) {
+export function assign(target, ...sources) {
   if (target === undefined || target === null) {
     throw new TypeError('Cannot convert first argument to object');
   }
@@ -15,6 +15,7 @@ export function assign (target, ...sources) {
     if (nextSource === undefined || nextSource === null) {
       continue;
     }
+
     nextSource = Object(nextSource);
 
     var keysArray = Object.keys(Object(nextSource));
@@ -26,5 +27,6 @@ export function assign (target, ...sources) {
       }
     }
   }
+
   return to;
 }

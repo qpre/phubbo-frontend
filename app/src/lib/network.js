@@ -1,4 +1,4 @@
-export function getJSON (url) {
+export function getJSON(url) {
   return new Promise((resolve, reject) => {
     let xhr = typeof XMLHttpRequest != 'undefined'
       ? new XMLHttpRequest()
@@ -19,11 +19,12 @@ export function getJSON (url) {
         }
       }
     };
+
     xhr.send();
-  })
+  });
 }
 
-export function post (url, data) {
+export function post(url, raw) {
   return new Promise((resolve, reject) => {
     let xhr = typeof XMLHttpRequest != 'undefined'
       ? new XMLHttpRequest()
@@ -43,8 +44,8 @@ export function post (url, data) {
 
         let response = {
           status,
-          data
-        }
+          data,
+        };
 
         if (status == 200) {
           resolve && resolve(response);
@@ -53,6 +54,12 @@ export function post (url, data) {
         }
       }
     };
-    xhr.send(data);
-  })
+
+    if (raw) {
+      raw = JSON.stringify(raw);
+    }
+
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(raw);
+  });
 }

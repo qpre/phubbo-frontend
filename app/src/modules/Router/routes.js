@@ -9,27 +9,27 @@ export let SiteMap = [
     route:    'user/photos',
     handler:  () => {
       appView.yield(UserPhotosLayout);
-    }
+    },
   },
 
   {
     route:    '',
     handler:  () => {
       appView.yield(HomeLayout);
-    }
+    },
   },
 
   {
     route:    'session/login',
     handler:  () => {
       appView.yield(SessionLoginLayout);
-    }
+    },
   },
 
   {
     route:    'index',
     handler:  () => {
       appView.yield(IndexLayout);
-    }
-  }
-]
+    },
+  },
+];
