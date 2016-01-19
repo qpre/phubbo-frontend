@@ -1,105 +1,79 @@
 import {publish, subscribe} from '../Notifier/notifier';
 import {SiteMap} from './routes';
+import UrlPattern from 'url-pattern';
 
-let routes            = [];
-let root              = '';
+export let currentRoute: ?string = null;
 
-export let currentRoute   = null;
-
-function onLocationChange () {
-  let hash = clearSlashes(window.location.href.match(/#(.*)$/));
-
-  // early return if the hash has not changed
-  if (hash === currentRoute) { return; }
-
-  // this is our current state
-  currentRoute = hash;
-
-  // do we have any handler for this route ?
-  checkRoute(currentRoute);
-};
-
-function checkRoute (hash=null) {
-  // if no hash was found, get the current fragment
-  let fragment = (hash !== null) ? hash : clearSlashes(window.location.href.match(/#(.*)$/));
-
-  // check if a route fits the current hash
-  for (let route of routes) {
-    let match = fragment.match(route.re);
-
-    // it's match !
-    if (match) {
-      // proceed with route's handler
-      console.info(`ROUTER: processing to ${route.re}`);
-      route.handler.apply({}, match);
-      currentRoute = match;
-      publish('router:changed', currentRoute);
-      // early return, we don't want to keep on matching
-      return;
-    }
-  }
+type Route = {
+  path:         string,
+  handler:      Function
 }
 
-export function navigate (path) {
-  // defaulting path to root
-  path = path || '';
+let routes: Array<Route> = [];
 
-  window.history.pushState(null, null, '#' + clearSlashes(path));
-}
-
-export function addRoute (re, handler, root) {
-  // filtering '' as root path, that might match with every other one
-  if (re === '') {
-    re = /^\s*$/;
-  }
-
+export function addRoute(path: string, handler: Function) {
   // register route
-  routes.push({re: re, handler: handler});
+  routes.push({ path: path, handler: handler });
 }
 
-export function removeRoute ({re, handler}) {
-  let t;
-
-  if (handler !== undefined) {
-    t = (r) => { return (r.handler == handler); }
-  }
-
-  if (re !== undefined) {
-    t = (r) => { return (r.re.toString() === re.toString()); }
-  }
+export function removeRoute(path: string) {
+  let t: Function;
+  t = (r) => { return (r.path === path); };
 
   routes.map((r) => {
     if (t(r)) {
       let i = routes.indexOf(r);
       (i !== -1) && routes.splice(i, 1);
     }
-  })
+  });
 }
 
-export function flushRoutes() {
-  routes  = [];
-  root    = '/';
+function getHash() : string {
+  return window.location.hash.replace('#', '');
 }
 
-export function initRouter() {
+function clearSlashes(string: string='') : string {
+  return string.toString().replace(/\$/, '').replace(/^\//, '');
+}
+
+function checkRoute() {
+  let curRoute: string = getHash();
+
+  for (let route of routes) {
+    let match = null;
+
+    // URLPattern does not accept the empty string
+    if (route.path == '') {
+      match = (curRoute == '') ? '' : null;
+    } else {
+      let pattern;
+      pattern = new UrlPattern(route.path);
+      match   = pattern.match(curRoute);
+    }
+
+    if (match != null) {
+      console.info(`ROUTER: applying handler for ${route.path}`);
+      currentRoute = route.path;
+      route.handler.apply({}, [match]);
+      publish('route:changed', currentRoute);
+
+      return;
+    }
+  }
+}
+
+export function navigate(path: string='') {
+  window.history.pushState(null, null, '#' + clearSlashes(path));
+  checkRoute();
+}
+
+function init(siteMap: Array<Route>) {
   // Adding default routes
-  for (let r of SiteMap) {
-    addRoute(r.route, r.handler);
+  for (let r of siteMap) {
+    addRoute(r.path, r.handler);
   }
 
-  // observing popstate event
-  window.onpopstate = (e) => {
-    if (e.state) {
-      // history changed because of pushState/replaceState
-      onLocationChange();
-    }
-  };
-
-  // check for the current route
-  onLocationChange();
-};
-
-export function clearSlashes(string) {
-  string = (string) ? string : '';
-  return string.toString().replace(/\$/, '').replace(/^\//, '').replace('#', '');
+  checkRoute();
 }
+
+init(SiteMap);

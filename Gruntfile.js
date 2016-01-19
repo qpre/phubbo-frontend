@@ -3,27 +3,31 @@
 module.exports = function(grunt) {
   // Load Grunt tasks declared in the package.json file
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  var serveStatic = require('serve-static');
 
   grunt.initConfig({
     browserify: {
       dist: {
         options: {
           transform: [
-            ["babelify", {
-              compact: false
-            }]
-          ]
+            [
+              "babelify",
+              {
+                presets:   ['es2015', 'react'],
+              },
+            ],
+          ],
         },
         files: {
-          'dist/phubo.js': 'app/src/application.js'
-        }
-      }
+          'dist/phubo.js': 'app/src/application.js',
+        },
+      },
     },
 
     concat: {
       css: {
         files: {
-          'dist/assets/css/phubo.scss' : ['app/src/styles/*.scss']
+          'dist/assets/css/phubo.scss' : ['app/src/styles/*.scss'],
         }
       }
     },
@@ -64,8 +68,8 @@ module.exports = function(grunt) {
               require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
 
               // Serve the project folder
-              connect.static(options.base[0]),
-              connect.static(options.base[1])
+              serveStatic(options.base[0]),
+              serveStatic(options.base[1])
             ];
           }
         }

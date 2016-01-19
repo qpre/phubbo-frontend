@@ -95,8 +95,8 @@ export default class SessionLoginLayout extends React.Component {
           <div className='login'>
           { () => {
             if (selected) {
-              return <button onClick={this.validate.bind(this)}><i className='pe-7s-angle-right'></i></button>
-            }}()
+              return <button onClick={this.validate.bind(this)}><i className='pe-7s-angle-right'></i></button>;
+            }}
           }
         </div>
         </li>
@@ -122,7 +122,7 @@ export default class SessionLoginLayout extends React.Component {
         { () => {
           if (selected) {
             return <button onClick={this.validate.bind(this)}><i className='pe-7s-angle-right'></i></button>
-          }}()
+          }}
         }
         </div>
         </li>
