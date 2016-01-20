@@ -1,5 +1,4 @@
 import {publish, subscribe} from '../Notifier/notifier';
-import {SiteMap} from './routes';
 import UrlPattern from 'url-pattern';
 
 export let currentRoute: ?string = null;
@@ -13,7 +12,9 @@ let routes: Array<Route> = [];
 
 export function addRoute(path: string, handler: Function) {
   // register route
-  routes.push({ path: path, handler: handler });
+  let r: Route = { path, handler };
+
+  routes.push(r);
 }
 
 export function removeRoute(path: string) {
@@ -36,7 +37,7 @@ function clearSlashes(string: string='') : string {
   return string.toString().replace(/\$/, '').replace(/^\//, '');
 }
 
-function checkRoute() {
+export function checkRoute() {
   let curRoute: string = getHash();
 
   for (let route of routes) {
@@ -66,14 +67,3 @@ export function navigate(path: string='') {
   window.history.pushState(null, null, '#' + clearSlashes(path));
   checkRoute();
 }
-
-function init(siteMap: Array<Route>) {
-  // Adding default routes
-  for (let r of siteMap) {
-    addRoute(r.path, r.handler);
-  }
-
-  checkRoute();
-}
-
-init(SiteMap);
