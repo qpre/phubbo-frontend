@@ -9,19 +9,19 @@ export default class HomeLayout extends React.Component {
     super(props);
 
     this.state = {
-      name: null
-    }
+      name: null,
+    };
   }
 
-  componentWillMount () {
+  componentWillMount() {
     checkAuthorized();
-    this.setState({ name: Store.get('name') });
+    this.setState({ name: Store.get('username') });
   }
 
-  render () {
-      return <div className='user-me-layout fadeIn animated'>
-        <MenuLeft />
-        Hello {this.state.name}
-      </div>;
+  render() {
+    return <div className='user-me-layout fadeIn animated'>
+      <MenuLeft />
+      Hello {this.state.name}
+    </div>;
   }
 };

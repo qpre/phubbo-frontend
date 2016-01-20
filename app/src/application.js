@@ -1,6 +1,5 @@
 import * as Router from './modules/Router/router';
 import {ApplicationLayout} from './layouts/application';
-import {initFBDriver} from './modules/Social/facebook';
 import * as Data from './modules/Data/Store';
 
 let appView = React.render(ApplicationLayout, document.body);
@@ -26,6 +25,5 @@ Router.addRoute('index', () => {
   appView.yield(IndexLayout);
 });
 
+Data.restore();
 Router.checkRoute();
-
-initFBDriver();
