@@ -15,7 +15,6 @@ export default class HomeLayout extends React.Component {
 
   componentWillMount() {
     if (authorized()) {
-      debugger;
       this.setState({ name: Store.get('user').name });
     };
   }
