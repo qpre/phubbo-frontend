@@ -1,18 +1,21 @@
 export function getJSON(url) {
   return new Promise((resolve, reject) => {
-    let xhr = typeof XMLHttpRequest != 'undefined'
-      ? new XMLHttpRequest()
-      : new ActiveXObject('Microsoft.XMLHTTP');
+    let xhr = new XMLHttpRequest();
 
     xhr.open('get', url, true);
     xhr.onreadystatechange = () => {
       let status;
-      let data;
+      let data = {};
 
       if (xhr.readyState == 4) { // `DONE`
         status = xhr.status;
         if (status == 200) {
-          data = JSON.parse(xhr.responseText);
+          try {
+            data = JSON.parse(xhr.responseText);
+          } catch (e) {
+            data = {};
+          }
+
           resolve && resolve(data);
         } else {
           reject && reject(status);
@@ -26,9 +29,7 @@ export function getJSON(url) {
 
 export function post(url, raw) {
   return new Promise((resolve, reject) => {
-    let xhr = typeof XMLHttpRequest != 'undefined'
-      ? new XMLHttpRequest()
-      : new ActiveXObject('Microsoft.XMLHTTP');
+    let xhr = new XMLHttpRequest();
 
     xhr.open('post', url, true);
     xhr.onreadystatechange = () => {
@@ -38,8 +39,10 @@ export function post(url, raw) {
       if (xhr.readyState == 4) { // `DONE`
         status = xhr.status;
 
-        if (xhr.responseText) {
+        try {
           data = JSON.parse(xhr.responseText);
+        } catch (e) {
+          data = {};
         }
 
         let response = {

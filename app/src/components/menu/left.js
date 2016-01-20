@@ -2,6 +2,7 @@ import {publish, subscribe} from '../../modules/Notifier/notifier';
 import {checkAuthorized}    from '../../modules/Router/filters';
 import {logout}             from '../../modules/Router/filters';
 import * as Store           from '../../modules/Data/Store';
+import * as Auth            from '../../modules/Auth/auth';
 
 export class MenuLeft extends React.Component {
   constructor(props) {
@@ -15,13 +16,12 @@ export class MenuLeft extends React.Component {
 
   componentWillMount() {
     checkAuthorized();
-    this.setState({ name: Store.get('name') });
+    this.setState({ name: Store.get('username') });
   }
 
   logOut() {
     return (e) => {
-      Store.set('name', undefined);
-      checkAuthorized();
+      Auth.logOut();
     };
   }
 

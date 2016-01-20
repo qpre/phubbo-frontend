@@ -97,7 +97,7 @@ body {
 				&.single {
 					.selected {
 						top: 	calc(100% / 2 - 140px);
-						left: calc(50% - 70px) !important;
+						// left: calc(50% - 70px) !important;
 
 						img {
 							width: 90px;
@@ -140,6 +140,8 @@ body {
 
 					top: 0;
 					bottom: 0;
+					left: 0;
+					right: 0;
 					margin: auto;
 
 					transition: left 400ms ease-out, top 400ms linear, opacity 400ms ease-in;

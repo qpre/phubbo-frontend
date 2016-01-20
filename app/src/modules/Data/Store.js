@@ -1,6 +1,6 @@
 import {publish, subscribe} from '../../modules/Notifier/notifier';
-import * as Storage from './localStorage';
-import * as Obj from '../../lib/polyfills/object';
+import * as Storage         from './localStorage';
+import * as Obj             from '../../lib/polyfills/object';
 
 let store     = {};
 let observers = {};
