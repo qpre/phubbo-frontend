@@ -9,7 +9,7 @@ export default function application(state = initialState, action) {
   case CONTAINER_YIELD:
     return {
       ...state,
-      currentView: state.currentView,
+      currentView: action.container,
     };
 
   default:

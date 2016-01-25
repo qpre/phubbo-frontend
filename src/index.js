@@ -1,12 +1,13 @@
 // import 'todomvc-app-css/index.css';
 import React from 'react';
 import { render } from 'react-dom';
-import configureStore from './store/configureStore';
+import { attachRoutes } from './routes/index';
 import Root from './containers/Root';
-
-const store = configureStore();
+import {store} from './store';
 
 render(
   <Root store={store} />,
   document.getElementById('root')
 );
+
+attachRoutes();
