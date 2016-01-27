@@ -1,4 +1,3 @@
-// import 'todomvc-app-css/index.css';
 import React from 'react';
 import { render } from 'react-dom';
 import { attachRoutes } from './routes/index';

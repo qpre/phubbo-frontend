@@ -1,18 +1,23 @@
-import { addRoute, checkRoute } from '../lib/router.js';
-import { yieldContainer }       from '../actions/router';
-import { default as Dummy }     from '../containers/dummy';
-import { default as Dumb }      from '../containers/dumb';
-import {store}                  from '../store';
+import { addRoute, checkRoute, setDefaultHandler }  from '../utils/router.js';
+import { yieldContainer }           from '../actions/router';
+import { default as HomeLayout }    from '../containers/home';
+import { default as DefaultLayout } from '../containers/404';
+import SessionLoginLayout           from '../containers/session/login';
+import {store}                      from '../store';
 
 export function attachRoutes() {
-  addRoute('/dummy', () => {
+  addRoute('', () => {
     // TODO: set some state here.
-    store.dispatch(yieldContainer(Dummy));
+    store.dispatch(yieldContainer(HomeLayout));
   });
 
-  addRoute('/dumb', () => {
+  addRoute('session/login', () => {
     // TODO: set some state here.
-    store.dispatch(yieldContainer(Dumb));
+    store.dispatch(yieldContainer(SessionLoginLayout));
+  });
+
+  setDefaultHandler(() => {
+    store.dispatch(yieldContainer(DefaultLayout));
   });
 
   checkRoute();

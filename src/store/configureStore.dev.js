@@ -1,4 +1,5 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { persistState } from 'redux-devtools';
 import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools';
@@ -12,8 +13,12 @@ const finalCreateStore = compose(
   )
 )(createStore);
 
+const createStoreWithMiddleWare = applyMiddleware(
+  thunk,
+)(finalCreateStore);
+
 export default function configureStore(initialState) {
-  const store = finalCreateStore(rootReducer, initialState);
+  const store = createStoreWithMiddleWare(rootReducer, initialState);
 
   if (module.hot) {
     module.hot.accept('../reducers', () =>
