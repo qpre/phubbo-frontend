@@ -53,6 +53,15 @@ export function isLoggedIn(state) {
   return state.isLoggedIn;
 };
 
+export function redirectToLoginIfDisconnected(state) {
+  return dispatch => {
+    debugger;
+    if (!state.auth.isLoggedIn) {
+      navigate('session/login');
+    }
+  }
+}
+
 export function logOut() {
   return dispatch => {
     dispatch(requestLogout());

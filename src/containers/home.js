@@ -1,6 +1,7 @@
 import React, { Component }    from 'react';
 import { connect }             from 'react-redux';
 import { navigate }            from '../utils/router';
+import { redirectToLoginIfDisconnected } from '../actions/auth';
 
 let goTo = (path) => {
   return () => {
@@ -8,9 +9,15 @@ let goTo = (path) => {
   };
 };
 
-export default class HomeLayout extends Component {
+class HomeLayout extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    if (!this.props.loggedIn) {
+      navigate('session/login');
+    }
   }
 
   render() {
@@ -22,3 +29,11 @@ export default class HomeLayout extends Component {
     );
   }
 }
+
+function mapState(state) {
+  return {
+    loggedIn: state.auth.loggedIn,
+  }
+}
+
+export default connect(mapState)(HomeLayout);

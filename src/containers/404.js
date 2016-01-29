@@ -1,5 +1,6 @@
 import React, { Component }    from 'react';
 import { connect }             from 'react-redux';
+import { redirectToLoginIfDisconnected } from '../actions/auth';
 import { navigate }            from '../utils/router';
 
 let goTo = (path) => {

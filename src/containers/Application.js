@@ -21,7 +21,7 @@ class Application extends Component {
         { (() => {
           if (!currentView) { return 'Page not found'; }
 
-          return (new currentView({store})).render();
+          return React.createElement(currentView, { store });
         })()}
       </div>
     );
