@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
-    "dist": "webpack"
+    "dist": "webpack",
+    "deploy": "s3-upload"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,7 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "aws-sdk": "^2.2.33",
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
     "babel-polyfill": "^6.3.14",
@@ -69,6 +71,7 @@
     "redux": "^3.0.5",
     "redux-devtools": "^3.0.1",
     "redux-thunk": "^1.0.3",
+    "s3-uploader": "^1.1.0",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",

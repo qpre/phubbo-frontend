@@ -1,5 +1,14 @@
+machine:
+  node:
+    version: 5.4.0
+
+test:
+  override:
+    - pwd
+
 deployment:
   production:
-    branch: master
+    branch: feature/refactor-redux
     commands:
-      - grunt build aws_s3:production
+      - npm run dist
+      - npm run deploy

@@ -22,9 +22,10 @@ var plugins = (function() {
       new ClosureCompilerPlugin({
           compiler: {
             language_in:       'ECMASCRIPT5',
-            compilation_level: 'ADVANCED_OPTIMIZATIONS'
+            compilation_level: 'SIMPLE_OPTIMIZATIONS'
           },
-          concurrency: 3,
+          
+          concurrency: 5,
         }),
     ];
   }
