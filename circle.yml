@@ -2,6 +2,11 @@ machine:
   node:
     version: 5.4.0
 
+dependencies:
+  override:
+    - npm install
+    - npm install -g s3-upload
+
 test:
   override:
     - pwd
