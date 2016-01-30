@@ -1,27 +1,49 @@
 var path = require('path');
 var webpack = require('webpack');
+var ClosureCompilerPlugin = require('webpack-closure-compiler');
 
-var devFlagPlugin = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
-});
+var PROD = JSON.parse(process.env.NODE_ENV == 'production' || 'false');
 
-module.exports = {
-  devtool: 'eval',
-  entry: [
+var entry = (function() {
+  if (PROD) {
+    return ['./src/index'];
+  }
+
+  return [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
     './src/index',
-  ],
+  ];
+})();
+
+var plugins = (function() {
+  if (PROD) {
+    return [
+      new ClosureCompilerPlugin({
+          compiler: {
+            language_in:       'ECMASCRIPT5',
+            compilation_level: 'ADVANCED_OPTIMIZATIONS'
+          },
+          concurrency: 3,
+        }),
+    ];
+  }
+
+  return [
+   new webpack.HotModuleReplacementPlugin(),
+   new webpack.NoErrorsPlugin(),
+ ];
+})();
+
+module.exports = {
+  devtool: 'source-map',
+  entry: entry,
   output: {
     path:       path.join(__dirname, 'dist'),
     filename:   'bundle.js',
     publicPath: '/',
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    devFlagPlugin,
-  ],
+  plugins: plugins,
   module: {
     loaders: [
       {

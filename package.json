@@ -4,7 +4,8 @@
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
     "start": "node server.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "dist": "webpack"
   },
   "repository": {
     "type": "git",
@@ -58,6 +59,7 @@
     "babel-preset-react": "^6.3.13",
     "classnames": "^2.2.3",
     "file-loader": "^0.8.5",
+    "google-closure-compiler": "^20160125.0.0",
     "node-sass": "^3.4.2",
     "raw-loader": "^0.5.1",
     "react": "^0.14.0",
@@ -71,6 +73,7 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "url-pattern": "^1.0.1",
+    "webpack-closure-compiler": "^2.0.0",
     "webpack-dev-server": "^1.14.1"
   }
 }
