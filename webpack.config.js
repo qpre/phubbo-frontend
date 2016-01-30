@@ -24,7 +24,7 @@ var plugins = (function() {
             language_in:       'ECMASCRIPT5',
             compilation_level: 'SIMPLE_OPTIMIZATIONS'
           },
-          
+
           concurrency: 5,
         }),
     ];
