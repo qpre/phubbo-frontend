@@ -9,6 +9,7 @@ new WebpackDevServer(
     historyApiFallback: true,
     stats: {
       colors: true,
+      progress: true,
     },
   }
 ).listen(3000, 'localhost', function(err, result) {
