@@ -1,34 +1,22 @@
 {
-  "name": "react-hot-boilerplate",
+  "name": "phubo-frontend",
   "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "description": "Phubo's front end application",
   "scripts": {
-    "start": "node server.js",
-    "lint": "eslint src",
-    "dist": "webpack",
+    "start":  "node server.js",
+    "lint":   "eslint src",
+    "dist":   "webpack",
     "deploy": "s3-upload"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
+    "url":  "https://github.com/qpre/phubo-frontend.git"
   },
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
-  ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
-  "license": "MIT",
+  "author":   "Quentin Pré @ Agence Tous Risques",
   "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
+    "url": "https://github.com/qpre/phubo-frontend/issues"
   },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
+  "homepage": "https://github.com/qpre/phubo-frontend/",
   "dependencies": {
     "aws-sdk": "^2.2.33",
     "babel-core": "^6.4.5",
