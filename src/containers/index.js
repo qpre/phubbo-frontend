@@ -1,13 +1,12 @@
 import React, { Component }    from 'react';
 import { connect }             from 'react-redux';
 import { navigate }            from '../utils/router';
-import { redirectToLoginIfDisconnected } from '../actions/auth';
 
-let goTo = (path) => {
+function goTo(path) {
   return () => {
     navigate(path);
   };
-};
+}
 
 class IndexLayout extends Component {
   constructor(props) {
@@ -16,10 +15,14 @@ class IndexLayout extends Component {
 
   renderSessionButtons() {
     if (this.props.loggedIn) {
-      return (<a onClick={goTo('me')}>Dashboard<i className='pe-7s-angle-right-circle'></i></a>);
-    };
+      return (<a onClick={goTo('me')}>
+        Dashboard<i className='pe-7s-angle-right-circle'></i>
+      </a>);
+    }
 
-    return (<a onClick={goTo('session/login')}>sign in <i className='pe-7s-angle-right-circle'></i></a>);
+    return (<a onClick={goTo('session/login')}>
+      sign in <i className='pe-7s-angle-right-circle'></i>
+    </a>);
   }
 
   render() {

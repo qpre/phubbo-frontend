@@ -1,13 +1,11 @@
-import React, { Component }    from 'react';
-import { connect }             from 'react-redux';
-import { redirectToLoginIfDisconnected } from '../actions/auth';
-import { navigate }            from '../utils/router';
+import React, { Component } from 'react';
+import { navigate }         from '../utils/router';
 
-let goTo = (path) => {
+function goTo(path) {
   return () => {
     navigate(path);
   };
-};
+}
 
 export default class DefaultLayout extends Component {
   constructor(props) {

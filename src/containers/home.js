@@ -1,13 +1,5 @@
 import React, { Component }    from 'react';
 import { connect }             from 'react-redux';
-import { navigate }            from '../utils/router';
-import { redirectToLoginIfDisconnected } from '../actions/auth';
-
-let goTo = (path) => {
-  return () => {
-    navigate(path);
-  };
-};
 
 class HomeLayout extends Component {
   constructor(props) {

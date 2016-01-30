@@ -1,8 +1,6 @@
-import {navigate} from '../../utils/router';
-
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logIn, logOut } from '../../actions/auth';
+import { logIn } from '../../actions/auth';
 
 class SessionLoginLayout extends Component {
   constructor(props) {
@@ -16,36 +14,22 @@ class SessionLoginLayout extends Component {
   }
 
   validate() {
-    this.props.dispatch(logIn({ username: this.state.username, password: this.state.password }));
+    return () => {
+      this.props.dispatch(logIn({ username: this.state.username, password: this.state.password }));
+    };
   }
 
-  handleChange(field, event) {
-    let state = {};
-    state[field] = event.target.value;
-    this.setState(state);
+  handleChange(field) {
+    return (event) => {
+      const state = {};
+      state[field] = event.target.value;
+      this.setState(state);
+    };
   }
 
-  renderPasswordField(selected) {
-    if (!selected) { return; }
-
-    return <input  type="password"
-              placeholder='password'
-              value={this.state.password}
-              onChange={ this.handleChange.bind(this, 'password') } />;
-  }
-
-  renderUsernameField(selected) {
-    if (!selected) { return; }
-
-    return <input  type="text"
-              placeholder='username'
-              value={this.state.username}
-              onChange={ this.handleChange.bind(this, 'username') } />;
-  }
-
-  selectIcon(index, name) {
-    return (e) => {
-      if (this.state.selected == index) { return; }
+  selectIcon(index) {
+    return () => {
+      if (this.state.selected === index) { return; }
 
       document.body.querySelector('.usericons').classList.add('single');
       this.setState({
@@ -55,9 +39,29 @@ class SessionLoginLayout extends Component {
     };
   }
 
+  renderUsernameField(selected) {
+    if (!selected) { return ''; }
+
+    return (<input  type="text"
+      placeholder='username'
+      value={this.state.username}
+      onChange={ this.handleChange('username') }
+    />);
+  }
+
+  renderPasswordField(selected) {
+    if (!selected) { return ''; }
+
+    return (<input  type="password"
+      placeholder='password'
+      value={this.state.password}
+      onChange={ this.handleChange('password') }
+    />);
+  }
+
   render() {
     // render sign up
-    let selected = this.state.selected == 0;
+    const selected = this.state.selected === 0;
 
     return (
       <div className='session-login-layout centered-content fadeIn animated'>
@@ -73,7 +77,9 @@ class SessionLoginLayout extends Component {
             <div className='login'>
               { (() => {
                 if (selected) {
-                  return <button onClick={this.validate.bind(this)}><i className='pe-7s-angle-right'></i></button>;
+                  return (<button onClick={ this.validate() }>
+                    <i className='pe-7s-angle-right'></i>
+                  </button>);
                 }})()
               }
             </div>
@@ -82,6 +88,6 @@ class SessionLoginLayout extends Component {
       </div>
     );
   }
-};
+}
 
 export default connect(state => state)(SessionLoginLayout);

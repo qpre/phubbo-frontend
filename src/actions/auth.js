@@ -17,7 +17,7 @@ function requestLogin(credentials) {
   };
 }
 
-export function requestLogout() {
+export function requestLogout(credentials) {
   return {
     type: LOG_OUT,
     credentials,

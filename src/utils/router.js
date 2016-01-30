@@ -8,7 +8,7 @@ type Route = {
   handler:      Function
 }
 
-let routes: Array<Route> = [];
+const routes: Array<Route> = [];
 
 export function setDefaultHandler(handler: Function) {
   defaultHandler = handler;
@@ -16,19 +16,19 @@ export function setDefaultHandler(handler: Function) {
 
 export function addRoute(path: string, handler: Function) {
   // register route
-  let r: Route = { path, handler };
+  const r: Route = { path, handler };
 
   routes.push(r);
 }
 
 export function removeRoute(path: string) {
   let t: Function;
-  t = (r) => { return (r.path === path); };
+  t = (r) => (r.path === path);
 
   routes.map((r) => {
     if (t(r)) {
-      let i = routes.indexOf(r);
-      (i !== -1) && routes.splice(i, 1);
+      const i = routes.indexOf(r);
+      if (i !== -1) { routes.splice(i, 1); }
     }
   });
 }
@@ -37,27 +37,28 @@ function getHash() : string {
   return window.location.hash.replace('#', '');
 }
 
-function clearSlashes(string: string='') : string {
-  return string.toString().replace(/\$/, '').replace(/^\//, '');
+function clearSlashes(str: string) : string {
+  return str.toString().replace(/\$/, '').replace(/^\//, '');
 }
 
 export function checkRoute() {
-  let curRoute: string = getHash();
+  const curRoute: string = getHash();
 
-  for (let route of routes) {
+  for (const route of routes) {
     let match = null;
 
     // URLPattern does not accept the empty string
-    if (route.path == '') {
-      match = (curRoute == '') ? '' : null;
+    if (route.path === '') {
+      match = (curRoute === '') ? '' : null;
     } else {
       let pattern;
       pattern = new UrlPattern(route.path);
       match   = pattern.match(curRoute);
     }
 
-    if (match != null) {
+    if (match !== null) {
       console.info(`ROUTER: applying handler for ${route.path}`);
+
       currentRoute = route.path;
       route.handler.apply({}, [match]);
 
@@ -73,7 +74,7 @@ export function checkRoute() {
   return;
 }
 
-export function navigate(path: string='') {
-  window.history.pushState(null, null, '#' + clearSlashes(path));
+export function navigate(path: string = '') {
+  window.history.pushState(null, null, `#${clearSlashes(path)}`);
   checkRoute();
 }

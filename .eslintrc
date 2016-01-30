@@ -10,8 +10,11 @@
   "extends": "airbnb",
   "rules": {
     "quotes": [2, "single"],
+    "react/prop-types": 0,
     "prop-types": 0,
     "key-spacing":  0,
-    "no-multi-spaces": 0
-  }
+    "no-multi-spaces": 0,
+    "jsx-quotes": 0
+  },
+  "plugins": ["flowtype"]
 }

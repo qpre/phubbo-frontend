@@ -5,4 +5,4 @@ export function yieldContainer(container) {
     type: types.CONTAINER_YIELD,
     container,
   };
-};
+}
