@@ -1,15 +1,19 @@
+machine:
+  node:
+    version: 5.0.0
+
 dependencies:
-  pre:
-    - npm install -g bower
-    - npm install -g ember-cli
   override:
-    - npm i
-    - bower i
-    - sudo pip install awscli
-    
+    - npm install
+    - npm install -g qpre/s3-static-site-uploader
+
+test:
+  override:
+    - pwd
 
 deployment:
   production:
-    branch: master
-    heroku:
-      appname: phubo-frontend
+    branch: feature/refactor-redux
+    commands:
+      - npm run dist
+      - npm run deploy

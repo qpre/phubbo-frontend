@@ -1,0 +1,3 @@
+export const CONTAINER_YIELD = 'CONTAINER_YIELD';
+
+export const ROUTE_CHANGED = 'ROUTE_CHANGED';
