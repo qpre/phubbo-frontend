@@ -5,9 +5,7 @@ import '../styles/main.scss';
 
 import React, { Component }    from 'react';
 import { connect }             from 'react-redux';
-import { bindActionCreators }  from 'redux';
-import { yieldContainer }      from '../actions/router';
-import {store} from '../store';
+import { store } from '../store';
 
 import Background from '../components/Background';
 

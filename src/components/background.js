@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 
 export default class Background extends Component {
   constructor(props) {
@@ -7,7 +7,7 @@ export default class Background extends Component {
 
   render() {
     return (
-      <div id='background'></div>
+      <div id="background"></div>
     );
   }
 }

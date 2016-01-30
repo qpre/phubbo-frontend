@@ -32,7 +32,7 @@ function loggedIn(json) {
   };
 }
 
-function loggedOut(json) {
+function loggedOut() {
   return {
     type:       LOGGED_OUT,
     receivedAt: Date.now(),
@@ -47,16 +47,16 @@ export function logIn(credentials) {
         dispatch(loggedIn(response));
         navigate('me');
       })
-      .catch(response => dispatch(loggedOut()));
+      .catch(() => dispatch(loggedOut()));
   };
 }
 
 export function isLoggedIn(state) {
   return state.isLoggedIn;
-};
+}
 
 export function redirectToLoginIfDisconnected(state) {
-  return dispatch => {
+  return () => {
     if (!state.auth.isLoggedIn) {
       navigate('session/login');
     }

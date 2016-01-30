@@ -56,7 +56,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: ['react-hot', 'babel', 'eslint'],
         include: path.join(__dirname, 'src'),
       },
       {

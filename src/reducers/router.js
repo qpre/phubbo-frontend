@@ -6,13 +6,13 @@ const initialState = {
 
 export default function application(state = initialState, action) {
   switch (action.type) {
-  case CONTAINER_YIELD:
-    return {
-      ...state,
-      currentView: action.container,
-    };
+    case CONTAINER_YIELD:
+      return {
+        ...state,
+        currentView: action.container,
+      };
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }

@@ -1,24 +1,24 @@
 export function getJSON(url) {
   return new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
 
     xhr.open('get', url, true);
     xhr.onreadystatechange = () => {
       let status;
       let data = {};
 
-      if (xhr.readyState == 4) { // `DONE`
+      if (xhr.readyState === 4) { // `DONE`
         status = xhr.status;
-        if (status == 200) {
+        if (status === 200) {
           try {
             data = JSON.parse(xhr.responseText);
           } catch (e) {
             data = {};
           }
 
-          resolve && resolve(data);
+          if (resolve) resolve(data);
         } else {
-          reject && reject(status);
+          if (reject) reject(status);
         }
       }
     };
@@ -27,16 +27,18 @@ export function getJSON(url) {
   });
 }
 
-export function post(url, raw) {
+export function post(url, dataObj = null) {
+  let dataStr = '';
+
   return new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
 
     xhr.open('post', url, true);
     xhr.onreadystatechange = () => {
       let status;
       let data;
 
-      if (xhr.readyState == 4) { // `DONE`
+      if (xhr.readyState === 4) { // `DONE`
         status = xhr.status;
 
         try {
@@ -45,24 +47,24 @@ export function post(url, raw) {
           data = {};
         }
 
-        let response = {
+        const response = {
           status,
           data,
         };
 
-        if (status == 200) {
-          resolve && resolve(response);
+        if (status === 200) {
+          if (resolve) resolve(response);
         } else {
-          reject && reject(response);
+          if (reject) reject(response);
         }
       }
     };
 
-    if (raw) {
-      raw = JSON.stringify(raw);
+    if (dataObj) {
+      dataStr = JSON.stringify(dataObj);
     }
 
     xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(raw);
+    xhr.send(dataStr);
   });
 }

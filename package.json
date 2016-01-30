@@ -32,6 +32,7 @@
     "babel-preset-stage-0": "^6.0.15",
     "classnames": "^2.2.3",
     "css-loader": "^0.23.1",
+    "eslint-loader": "^1.2.1",
     "eslint-plugin-react": "^3.6.2",
     "file-loader": "^0.8.5",
     "google-closure-compiler": "^20160125.0.0",
@@ -57,5 +58,10 @@
     "webpack-config-loader": "^0.1.0",
     "webpack-dev-server": "^1.12.1",
     "webpack-merge": "^0.7.3"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^4.0.0",
+    "eslint-plugin-react": "^3.16.1"
   }
 }

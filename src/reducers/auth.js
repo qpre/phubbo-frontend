@@ -1,7 +1,6 @@
-import { combineReducers } from 'redux';
 import * as Actions from '../actions/auth';
 
-let defaultState = {
+const defaultState = {
   isFetching: false,
   loggedIn:   false,
 };
@@ -37,6 +36,6 @@ function auth(state = defaultState, action) {
     default:
       return state;
   }
-};
+}
 
 export default auth;
