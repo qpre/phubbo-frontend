@@ -2,6 +2,8 @@ import fetch from 'isomorphic-fetch';
 import { post } from '../utils/network';
 import { navigate } from '../utils/router';
 
+import config from '../config/config.js';
+
 export const CHECK_AUTH = 'CHECK_AUTH';
 export const LOGGED_IN  = 'LOGGED_IN';
 export const LOGGED_OUT = 'LOGGED_OUT';
@@ -40,7 +42,7 @@ function loggedOut(json) {
 export function logIn(credentials) {
   return dispatch => {
     dispatch(requestLogin(credentials));
-    return post(`http://localhost:4080/api/auth/login`, credentials)
+    return post(`${config.apiEndpoint}/api/auth/login`, credentials)
       .then(response => {
         dispatch(loggedIn(response));
         navigate('me');
@@ -64,7 +66,7 @@ export function redirectToLoginIfDisconnected(state) {
 export function logOut() {
   return dispatch => {
     dispatch(requestLogout());
-    return fetch(`http://localhost:4080/api/auth/logout`)
+    return fetch(`${config.apiEndpoint}/api/auth/logout`)
       .then(() => dispatch(loggedOut()));
   };
 }
