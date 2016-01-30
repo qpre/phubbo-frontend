@@ -41,9 +41,9 @@ export function logIn(credentials) {
   return dispatch => {
     dispatch(requestLogin(credentials));
     return post(`http://localhost:4080/api/auth/login`, credentials)
-      .then(response  => {
-        navigate('');
+      .then(response => {
         dispatch(loggedIn(response));
+        navigate('me');
       })
       .catch(response => dispatch(loggedOut()));
   };
@@ -55,11 +55,10 @@ export function isLoggedIn(state) {
 
 export function redirectToLoginIfDisconnected(state) {
   return dispatch => {
-    debugger;
     if (!state.auth.isLoggedIn) {
       navigate('session/login');
     }
-  }
+  };
 }
 
 export function logOut() {
