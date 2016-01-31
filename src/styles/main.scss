@@ -42,7 +42,7 @@ body {
   #background {
     content: '';
     display: block;
-    z-index: -1;
+    z-index: 0;
 
     position: fixed;
     top: 0;
@@ -51,7 +51,6 @@ body {
     left: 0;
 
     background-size:  cover;
-    background-image: url('/assets/img/home-bg.png');
 
     -webkit-filter: blur(10px);
     -moz-filter: blur(10px);
@@ -65,10 +64,11 @@ body {
     -moz-transition: opacity .5s ease-in-out;
     transition: opacity .5s ease-in-out;
     margin: -10px;
-    opacity: 0.4;
   }
 
   .application {
+
+		z-index: 100;
 
 		.session-login-layout {
 			position: absolute;
@@ -262,11 +262,9 @@ body {
     .index-layout, .user-me-layout {
       position: absolute;
 
-			-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-			-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-			box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+			display: flex;
 
-			background-color: #FDFEFF;
+			z-index: 100;
 
 			top:    5px;
 			right:  5px;
@@ -277,14 +275,7 @@ body {
 
 			border-radius: 5px;
 
-      color: #9E9FA0;
-
       text-align: left;
-
-			.content {
-				display: inline-block;
-				padding: 20px;
-			}
     }
   }
 }
@@ -314,78 +305,6 @@ body {
 
 a {
 	cursor: pointer;
-}
-
-.menu {
-	width: 250px;
-
-	color: #D7D8D7;
-
-	background: linear-gradient(#232E2C, #1D2830);
-
-	&.left {
-		-webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-		-moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-		box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-		position: relative;
-		height: 100%;
-		display: inline-block;
-	}
-}
-
-ul.menu {
-	li {
-		position: relative;
-		height: 30px;
-		padding: 10px;
-	}
-
-	.profile {
-		padding-top: 15px;
-		display:table;
-		width:100%;
-		table-layout:fixed;
-
-		font-size: 18px;
-
-		height: 30px;
-
-		border-bottom: 1px solid #8F9498;
-
-		.cell {
-			display:table-cell;
-			text-align:center;
-			vertical-align: middle;
-			height: 100%;
-
-			&.photo {
-				width: 50px;
-
-				vertical-align: text-bottom;
-
-				img {
-					border: 1px solid #8F9498;
-					border-radius: 50%;
-
-					width: 32px;
-					height: 32px;
-				}
-			}
-
-			&.name {
-				padding-left: 15px;
-				text-align: 	left;
-				font-weight: 	500;
-				text-transform: capitalize;
-			}
-
-			&.logout {
-				cursor: pointer;
-				width: 50px;
-				font-size: 24px;
-			}
-		}
-	}
 }
 
 .index-mast-head {

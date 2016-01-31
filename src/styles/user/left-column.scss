@@ -1,0 +1,16 @@
+.left-column {
+  display: inline-block;
+
+  width:  200px;
+  height: calc(100%);
+
+  color: white;
+
+  position: relative;
+  overflow: hidden;
+
+  :not(.blurred-background) {
+    position: relative;
+    z-index: 100;
+  }
+}

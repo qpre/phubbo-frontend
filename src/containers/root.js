@@ -5,10 +5,6 @@ import Application from './Application';
 export default class Root extends Component {
   constructor(props) {
     super(props);
-
-    this.propTypes = {
-      store: React.PropTypes.object.isRequired,
-    };
   }
 
   render() {

@@ -7,7 +7,7 @@ export default class Background extends Component {
 
   render() {
     return (
-      <div id="background"></div>
+      <div id="background" style={{ backgroundImage: 'url(/assets/img/home-bg.png)' }}></div>
     );
   }
 }
