@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import Application from './Application';
+import { Router } from 'react-router';
 
 export default class Root extends Component {
   constructor(props) {
@@ -8,11 +8,11 @@ export default class Root extends Component {
   }
 
   render() {
-    const { store } = this.props;
-
     return (
-      <Provider store={store}>
-        <Application />
+      <Provider store={this.props.store}>
+        <Router history={this.props.history}>
+          {this.props.routes}
+        </Router>
       </Provider>
     );
   }

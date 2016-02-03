@@ -1,10 +1,12 @@
 import * as Actions from '../actions/social/facebook';
 
 const defaultState = {
+  isSDKLoading: false,
   isSDKLoaded:  false,
   isFetching:   false,
   isAuthorized: false,
   authResponse: null,
+  photos: [],
 };
 
 export default function facebookAuthorization(state = defaultState, action) {
@@ -12,19 +14,21 @@ export default function facebookAuthorization(state = defaultState, action) {
     case Actions.SDK_LOADING:
       return {
         ...state,
-        isFetching: true,
+        isSDKLoading: true,
+        isSDKLoaded:  false,
       };
 
     case Actions.SDK_LOADED:
       return {
         ...state,
-        isSDKLoaded: true,
+        isSDKLoading: false,
+        isSDKLoaded:  true,
       };
 
     case Actions.AUTHORIZING:
       return {
         ...state,
-        isFetching: true,
+        isFetching:   true,
         isAuthorized: false,
       };
 
@@ -42,6 +46,12 @@ export default function facebookAuthorization(state = defaultState, action) {
         isFetching:   false,
         isAuthorized: false,
         authResponse: null,
+      };
+
+    case Actions.FB_PHOTOS_LOADED:
+      return {
+        ...state,
+        photos: action.photos,
       };
 
     default:

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { authorize } from '../../actions/social/facebook';
-import { connect }             from 'react-redux';
+import { connect } from 'react-redux';
 
 class FacebookAuthorizationButton extends Component {
   constructor(props) {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { navigate }         from '../utils/router';
+import { routeActions } from 'react-router-redux';
+import { store } from '../store';
 
 function goTo(path) {
   return () => {
-    navigate(path);
+    store.dispatch(routeActions.push(path));
   };
 }
 
@@ -14,9 +15,9 @@ export default class DefaultLayout extends Component {
 
   render() {
     return (
-      <div>
+      <div className='centered-content'>
         <h1>404 not found</h1>
-        <a onClick={goTo('')}>get back home</a>
+        <a onClick={goTo('/')}>get back home</a>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { post } from '../utils/network';
-import { navigate } from '../utils/router';
+import { routeActions } from 'react-router-redux';
+import { history } from '../store';
 
 import config from '../config/config.js';
 
@@ -45,7 +46,7 @@ export function logIn(credentials) {
     return post(`${config.apiEndpoint}/api/auth/login`, credentials)
       .then(response => {
         dispatch(loggedIn(response));
-        navigate('me');
+        dispatch(history.push('/me'));
       })
       .catch(() => dispatch(loggedOut()));
   };
@@ -56,9 +57,9 @@ export function isLoggedIn(state) {
 }
 
 export function redirectToLoginIfDisconnected(state) {
-  return () => {
+  return dispatch => {
     if (!state.auth.isLoggedIn) {
-      navigate('session/login');
+      dispatch(routeActions.push('/session/login'));
     }
   };
 }

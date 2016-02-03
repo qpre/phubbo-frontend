@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import router from './router';
+import { routeReducer } from 'react-router-redux';
 import auth from './auth';
 import facebookAuthorization from './userFacebookAuth.js';
 
 const rootReducer = combineReducers({
-  router,
+  routing: routeReducer,
   auth,
   facebookAuthorization,
 });

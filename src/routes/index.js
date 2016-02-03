@@ -1,45 +1,29 @@
-import { addRoute, checkRoute, setDefaultHandler } from '../utils/router.js';
-import { yieldContainer } from '../actions/router';
+import React from 'react';
+import { Route, IndexRoute, Redirect } from 'react-router';
+
 import { default as HomeLayout } from '../containers/home';
 import { default as IndexLayout } from '../containers/index';
 import { default as DefaultLayout } from '../containers/404';
+
+import UserAccounts from '../components/user/accounts';
+import { default as UserPhotos } from '../components/user/photos/index';
+
 import SessionLoginLayout from '../containers/session/login';
-import { store } from '../store';
-import { navigate } from '../utils/router';
+import { default as ApplicationLayout } from '../containers/Application';
 
-function addSecuredRoute(path, handler) {
-  addRoute(path, () => {
-    let authState = store.getState();
-    authState = authState ? authState.auth : null;
+export default (
+  <Route path="/" component={ApplicationLayout}>
+    <IndexRoute component={IndexLayout} />
 
-    if (authState && !authState.loggedIn) {
-      navigate('session/login');
-      return;
-    }
+    <Route path='/404' component={DefaultLayout} />
 
-    if (handler) { handler(); }
-  });
-}
+    <Route path="/session/login" component={SessionLoginLayout}/>
 
-export function attachRoutes() {
-  addRoute('', () => {
-    // TODO: set some state here.
-    store.dispatch(yieldContainer(IndexLayout));
-  });
-
-  addSecuredRoute('me', () => {
-    // TODO: set some state here.
-    store.dispatch(yieldContainer(HomeLayout));
-  });
-
-  addRoute('session/login', () => {
-    // TODO: set some state here.
-    store.dispatch(yieldContainer(SessionLoginLayout));
-  });
-
-  setDefaultHandler(() => {
-    store.dispatch(yieldContainer(DefaultLayout));
-  });
-
-  checkRoute();
-}
+    <Route path="/me" component={HomeLayout}>
+      <IndexRoute component={UserPhotos} />
+      <Route path='accounts' component={UserAccounts}/>
+      <Route path='photos' component={UserPhotos}/>
+    </Route>
+    <Redirect from='*' to='/404' />
+  </Route>
+);

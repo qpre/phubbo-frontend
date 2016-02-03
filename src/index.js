@@ -1,12 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { attachRoutes } from './routes/index';
 import Root from './containers/Root';
-import { store } from './store';
+import { store, history } from './store';
+import { default as routes } from './routes';
 
 render(
-  <Root store={store} />,
+  <Root routes={routes} store={store} history={history} />,
   document.getElementById('root')
 );
-
-attachRoutes();

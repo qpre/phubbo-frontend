@@ -1,10 +1,11 @@
 import React, { Component }    from 'react';
 import { connect }             from 'react-redux';
-import { navigate }            from '../utils/router';
+import { routeActions } from 'react-router-redux';
+import { store } from '../store';
 
 function goTo(path) {
   return () => {
-    navigate(path);
+    store.dispatch(routeActions.push(path));
   };
 }
 
@@ -15,12 +16,12 @@ class IndexLayout extends Component {
 
   renderSessionButtons() {
     if (this.props.loggedIn) {
-      return (<a onClick={goTo('me')}>
+      return (<a onClick={goTo('/me')}>
         Dashboard<i className='pe-7s-angle-right-circle'></i>
       </a>);
     }
 
-    return (<a onClick={goTo('session/login')}>
+    return (<a onClick={goTo('/session/login')}>
       sign in <i className='pe-7s-angle-right-circle'></i>
     </a>);
   }

@@ -1,0 +1,30 @@
+.photos {
+  height: 100%;
+
+  background-color: #323639;
+
+  width: calc(100% - 200px);
+  display: inline-block;
+
+  border-left: 1px solid #333;
+
+  overflow-x: scroll;
+
+  text-align: center;
+
+  .photo {
+    margin: 5px;
+    display: inline-block;
+    position: relative;
+
+    border-radius: 5px;
+    overflow: hidden;
+
+    text-align: center;
+
+    width: 200px;
+    height: 150px;
+
+    background-position: cover;
+  }
+}
