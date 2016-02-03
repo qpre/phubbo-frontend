@@ -13,7 +13,7 @@ test:
 
 deployment:
   production:
-    branch: feature/master
+    branch: master
     commands:
       - npm run dist
       - npm run deploy
